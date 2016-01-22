@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:paddingBottom="5dp"
+    android:radius="5dp" >
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/blogBackground"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:layout_margin="1dp" >-->
+
+        <!--<com.android.volley.toolbox.NetworkImageView-->
+            <!--android:id="@+id/blogImage"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/readBlog"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginBottom="16dp"-->
+            <!--android:text="Read more >"-->
+            <!--android:padding="5dp"-->
+            <!--android:background="#ffd237"-->
+            <!--android:fontFamily="sans-serif-condensed"-->
+            <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+            <!--android:textColor="#282828"-->
+            <!--android:textStyle="italic"-->
+            <!--android:typeface="normal"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/dateBlog"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:text="13 Nov, 2015"-->
+            <!--android:textStyle="italic"-->
+            <!--android:typeface="normal"-->
+            <!--android:fontFamily="sans-serif-condensed"-->
+            <!--android:background="#00bf8f"-->
+            <!--android:padding="3dp"-->
+            <!--android:textAppearance="?android:attr/textAppearanceLarge" />-->
+
+    <!--</RelativeLayout>-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/blogTitle"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignLeft="@+id/blogBackground"-->
+        <!--android:layout_below="@+id/blogBackground"-->
+        <!--android:layout_marginLeft="5dp"-->
+        <!--android:fontFamily="sans-serif-condensed"-->
+        <!--android:text="Blog Title"-->
+        <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+        <!--android:textColor="#00bf8f"-->
+        <!--android:textStyle="italic"-->
+        <!--android:typeface="normal" />-->
+
+    <TextView
+        android:id="@+id/blogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Blog Title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#00bf8f"
+        android:textStyle="italic"
+        android:typeface="normal" />
+
+    <!--<TextView-->
+        <!--android:id="@+id/blogDesc"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignLeft="@+id/blogTitle"-->
+        <!--android:layout_below="@+id/blogTitle"-->
+        <!--android:fontFamily="sans-serif-condensed"-->
+        <!--android:text="Blog Description"-->
+        <!--android:textColor="#878787"-->
+        <!--android:textStyle="italic"-->
+        <!--android:typeface="normal" />-->
+
+</RelativeLayout>

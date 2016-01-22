@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_row_selector"
+    android:padding="8dp" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Heading"
+        android:textColor="#878787"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:typeface="normal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Nothing new right now! :/"
+        android:textColor="#878787"
+        android:textStyle="italic"
+        android:typeface="normal"
+        android:layout_below="@+id/title"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

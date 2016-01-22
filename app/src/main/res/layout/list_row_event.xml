@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:paddingBottom="5dp"
+    android:radius="5dp" >
+
+    <RelativeLayout
+        android:id="@+id/eventBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:background="#fff"
+        android:layout_margin="1dp" >
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/eventImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="16dp"
+            android:text="Details >"
+            android:padding="5dp"
+            android:background="#ffd237"
+            android:fontFamily="sans-serif-condensed"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#282828"
+            android:textStyle="italic"
+            android:typeface="normal"
+            />
+
+        <TextView
+            android:id="@+id/eventDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="13 Nov, 2015"
+            android:textStyle="italic"
+            android:typeface="normal"
+            android:fontFamily="sans-serif-condensed"
+            android:background="#00bf8f"
+            android:padding="3dp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/eventBackground"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/eventTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/eventBackground"
+        android:layout_below="@+id/line2"
+        android:layout_marginLeft="5dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Blog Title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#00bf8f"
+        android:textStyle="italic"
+        android:typeface="normal" />
+
+    <TextView
+        android:id="@+id/eventShortDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/eventTitle"
+        android:layout_below="@+id/eventTitle"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Blog Description"
+        android:textColor="#878787"
+        android:textStyle="italic"
+        android:typeface="normal" />
+
+</RelativeLayout>
