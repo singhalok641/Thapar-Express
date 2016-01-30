@@ -19,7 +19,7 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         if (isOnline()){
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
         }

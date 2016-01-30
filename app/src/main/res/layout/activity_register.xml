@@ -41,6 +41,19 @@
                     android:hint="Name" />
             </android.support.design.widget.TextInputLayout>
 
+            <!-- Roll number Label -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+                <EditText android:id="@+id/reg_roll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="Roll Number"/>
+            </android.support.design.widget.TextInputLayout>
+
             <!-- Email Label -->
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -65,6 +78,166 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
                     android:hint="Password"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <!-- Gender Label -->
+            <TextView android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#372c24"
+                android:text="Gender"
+                android:layout_marginTop="15dp"/>
+            <RadioGroup
+                android:id="@+id/reg_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male"
+                    android:id="@+id/male"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female"
+                    android:id="@+id/female"/>
+            </RadioGroup>
+
+            <!-- Hostel male Label -->
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/hostel_male"
+                android:visibility="gone">
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#372c24"
+                    android:text="Hostel"
+                    android:layout_marginTop="15dp"/>
+                <RadioGroup
+                    android:id="@+id/reg_hostel_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="A"
+                        android:id="@+id/a"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="B"
+                        android:id="@+id/b"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="C"
+                        android:id="@+id/c"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="D"
+                        android:id="@+id/d"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="H"
+                        android:id="@+id/h"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PG"
+                        android:id="@+id/pg"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Other"
+                        android:id="@+id/noneMale"/>
+                </RadioGroup>
+            </LinearLayout>
+
+            <!-- Hostel female Label -->
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/hostel_female"
+                android:visibility="gone">
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#372c24"
+                    android:text="Hostel"
+                    android:layout_marginTop="15dp"/>
+                <RadioGroup
+                    android:id="@+id/reg_hostel_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="E"
+                        android:id="@+id/e"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="G"
+                        android:id="@+id/g"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="I"
+                        android:id="@+id/i"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FRC"
+                        android:id="@+id/frc"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Other"
+                        android:id="@+id/noneFemale"/>
+                </RadioGroup>
+            </LinearLayout>
+
+            <!--  Branch Label -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+                <EditText android:id="@+id/input_branch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapCharacters"
+                    android:hint="Branch" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <!-- YEar Label -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+                <EditText android:id="@+id/reg_year"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="Year"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <!-- Phone Label -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+                <EditText android:id="@+id/reg_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="Phone"/>
             </android.support.design.widget.TextInputLayout>
 
             <!-- Signup Button -->

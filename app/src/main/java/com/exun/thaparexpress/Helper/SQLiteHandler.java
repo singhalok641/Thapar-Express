@@ -27,8 +27,12 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
     private static final String KEY_EMAIL = "email";
-    private static final String KEY_UID = "uid";
-    private static final String KEY_CREATED_AT = "created_at";
+    private static final String KEY_ROLL = "roll";
+    private static final String KEY_HOSTEL = "hostel";
+    private static final String KEY_GENDER = "gender";
+    private static final String KEY_PHONE = "phone";
+    private static final String KEY_BRANCH = "branch";
+    private static final String KEY_YEAR = "year";
 
     public SQLiteHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -39,8 +43,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_USER + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_EMAIL + " TEXT UNIQUE," + KEY_UID + " TEXT,"
-                + KEY_CREATED_AT + " TEXT" + ")";
+                + KEY_EMAIL + " TEXT UNIQUE," + KEY_ROLL + " TEXT,"
+                + KEY_HOSTEL + " TEXT" + KEY_GENDER + " TEXT" + KEY_PHONE + " TEXT" +
+                KEY_BRANCH + " TEXT" + KEY_YEAR + " TEXT" + ")";
         db.execSQL(CREATE_LOGIN_TABLE);
 
         Log.d(TAG, "Database tables created");
@@ -59,14 +64,19 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     /**
      * Storing user details in database
      * */
-    public void addUser(String name, String email, String uid, String created_at) {
+    public void addUser(String name, String email, String roll
+            , String hostel,String gender, String phone,  String branch, String year) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, name); // Name
         values.put(KEY_EMAIL, email); // Email
-        values.put(KEY_UID, uid); // Email
-        values.put(KEY_CREATED_AT, created_at); // Created At
+        values.put(KEY_ROLL, roll); // ROll
+        values.put(KEY_HOSTEL, hostel); // Hostel
+        values.put(KEY_GENDER, gender); // Gender
+        values.put(KEY_PHONE, phone); // Phone
+        values.put(KEY_BRANCH, branch); // Branch
+        values.put(KEY_YEAR, year); // Year
 
         // Inserting Row
         long id = db.insert(TABLE_USER, null, values);
@@ -89,8 +99,12 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         if (cursor.getCount() > 0) {
             user.put("name", cursor.getString(1));
             user.put("email", cursor.getString(2));
-            user.put("uid", cursor.getString(3));
-            user.put("created_at", cursor.getString(4));
+            user.put("roll", cursor.getString(3));
+            user.put("hostel", cursor.getString(4));
+            user.put("gender", cursor.getString(5));
+            user.put("phone", cursor.getString(6));
+            user.put("branch", cursor.getString(7));
+            user.put("year", cursor.getString(8));
         }
         cursor.close();
         db.close();

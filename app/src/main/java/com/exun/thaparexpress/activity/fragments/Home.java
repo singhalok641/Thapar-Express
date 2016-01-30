@@ -71,74 +71,13 @@ public class Home extends Fragment{
         pDialog.setMessage("Loading...");
         pDialog.show();
 
-        /*// Creating volley request obj
-        JsonArrayRequest updatesReq = new JsonArrayRequest(url,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.d(TAG, response.toString());
-                        hidePDialog();
-
-                        // Parsing json
-                        for (int i = 0; i < response.length(); i++) {
-                            try {
-
-                                JSONObject obj = response.getJSONObject(i);
-                                UpdatesList updates = new UpdatesList();
-                                updates.setUpdate("- " +obj.getString("title"));
-
-                                int color = colors[random.nextInt(4)];
-                                updates.setRandomColor(color);
-
-                                // adding updates to updates array
-                                updatesLists.add(updates);
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-
-                        if (updatesLists == null){
-                            UpdatesList updates = new UpdatesList();
-                            updates.setUpdate("- Nothing new right now!");
-
-                            int color = colors[random.nextInt(4)];
-                            updates.setRandomColor(color);
-
-                            // adding updates to updates array
-                            updatesLists.add(updates);
-                        }
-
-                        // notifying list adapter about data changes
-                        // so that it renders the list view with updated data
-                        adapter.notifyDataSetChanged();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                UpdatesList updates = new UpdatesList();
-                updates.setUpdate("- Nothing new right now!");
-
-                int color = colors[random.nextInt(4)];
-                updates.setRandomColor(color);
-
-                // adding updates to updates array
-                updatesLists.add(updates);
-                adapter.notifyDataSetChanged();
-                hidePDialog();
-
-            }
-        });*/
-
         // Creating volley request obj
         StringRequest updatesReq = new StringRequest(Request.Method.GET,url,
                 new Response.Listener<String>() {
 
                     @Override
                     public void onResponse(String response) {
-                        Log.d(TAG, "Blogs: " + response);
+                        Log.d(TAG, "Updates: " + response);
                         hidePDialog();
 
                         try {
@@ -151,7 +90,7 @@ public class Home extends Fragment{
                                 // Now store the user in SQLite
                                 String message = jObj.getString("message");
 
-                                Log.d(TAG, "Blogs " + message);
+                                Log.d(TAG, "Updates " + message);
 
                                 JSONArray data = jObj.getJSONArray("data");
 

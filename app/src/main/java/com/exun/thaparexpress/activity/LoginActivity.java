@@ -109,8 +109,8 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
+        final String email = _emailText.getText().toString();
+        final String password = _passwordText.getText().toString();
 
         // TODO: Implement your own authentication logic here.
 
@@ -132,18 +132,21 @@ public class LoginActivity extends AppCompatActivity {
                         // Create login session
                         session.setLogin(true);
 
-                        Log.d(TAG,"Saving data");
+                        Log.d(TAG, "Saving data");
+                        Toast.makeText(LoginActivity.this,jObj.getString("message"),Toast.LENGTH_SHORT).show();
 
-                        String name = jObj.getString("name");
-                        String email = jObj.getString("email");
-                        String api = jObj.getString("api");
-                        String gender = jObj.getString("gender");
-                        String phone = jObj.getString("phone");
-//                        String created_at = jObj
-//                                .getString("created_at");
-                        String created_at = "aaj";
+                        JSONObject user = jObj.getJSONObject("user");
 
-                        db.addUser(name,email, api, created_at,gender,phone);
+                        String name = user.getString("name");
+                        String email = user.getString("email");
+                        String gender = user.getString("gender");
+                        String phone = user.getString("phone");
+                        String branch = user.getString("branch");
+                        String roll = user.getString("roll");
+                        String year = user.getString("year");
+                        String hostel = user.getString("hostel");
+
+                        db.addUser(name, email,roll,hostel,gender,phone,branch,year );
 
                         Log.d(TAG,"Starting main activity");
 
@@ -190,7 +193,7 @@ public class LoginActivity extends AppCompatActivity {
         };
 
         // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+        AppController.getInstance().addToRequestQueue(strReq, TAG);
 
         new android.os.Handler().postDelayed(
                 new Runnable() {

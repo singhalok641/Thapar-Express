@@ -2,28 +2,51 @@ package com.exun.thaparexpress.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.exun.thaparexpress.Helper.SQLiteHandler;
+import com.exun.thaparexpress.Helper.SessionManager;
 import com.exun.thaparexpress.R;
+import com.exun.thaparexpress.adapter.AppConfig;
+import com.exun.thaparexpress.adapter.AppController;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Register extends AppCompatActivity {
 
     private static final String TAG = "SignupActivity";
 
-    EditText _nameText,_emailText, _passwordText;
+    EditText _nameText,_emailText, _passwordText, inputPhone, inputRoll, inputBranch, inputYear;
+    RadioGroup inputGender, inputHosteMale, inputHostelFemale;
+    private ProgressDialog pDialog;
     Button _signupButton;
     TextView _loginLink;
     Toolbar mToolbar;
+    String gender=null,hostel=null,selection=null;
+    RadioButton radioSexButton,radioHostelButton;
+    int selectHID;
+    private SessionManager session;
+    private SQLiteHandler db;
+    LinearLayout hostelMale, hostelFemale;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,13 +61,93 @@ public class Register extends AppCompatActivity {
         _nameText = (EditText) findViewById(R.id.input_name);
         _emailText = (EditText) findViewById(R.id.input_email);
         _passwordText = (EditText) findViewById(R.id.input_password);
+        inputBranch = (EditText) findViewById(R.id.input_branch);
+        inputRoll = (EditText) findViewById(R.id.reg_roll);
+        inputYear = (EditText) findViewById(R.id.reg_year);
+        inputPhone = (EditText) findViewById(R.id.reg_phone);
+        inputGender = (RadioGroup) findViewById(R.id.reg_gender);
+        inputHostelFemale = (RadioGroup) findViewById(R.id.reg_hostel_female);
+        inputHosteMale = (RadioGroup) findViewById(R.id.reg_hostel_male);
         _signupButton = (Button) findViewById(R.id.btn_signup);
         _loginLink = (TextView) findViewById(R.id.link_login);
+        hostelMale = (LinearLayout) findViewById(R.id.hostel_male);
+        hostelFemale = (LinearLayout) findViewById(R.id.hostel_female);
+
+        // Progress dialog
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setIndeterminate(true);
+
+        // Session manager
+        session = new SessionManager(getApplicationContext());
+
+        // SQLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // Check if user is already logged in or not
+        if (session.isLoggedIn()) {
+            // User is already logged in. Take him to main activity
+            Intent intent = new Intent(Register.this,
+                    MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+        inputGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.male:
+                        hostelMale.setVisibility(View.VISIBLE);
+                        hostelFemale.setVisibility(View.GONE);
+                        selection = "male";
+                        break;
+                    case R.id.female:
+                        hostelMale.setVisibility(View.GONE);
+                        hostelFemale.setVisibility(View.VISIBLE);
+                        selection = "female";
+                        break;
+                }
+            }
+        });
+
+        int selectID = inputGender.getCheckedRadioButtonId();
+        if (selectID!= -1){
+            radioSexButton = (RadioButton) inputGender.findViewById(selectID);
+            gender = radioSexButton.getText().toString();
+        } else {
+            gender = null;
+        }
 
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signup();
+                String name = _nameText.getText().toString();
+                String email = _emailText.getText().toString();
+                String password = _passwordText.getText().toString();
+                String phone = inputPhone.getText().toString();
+                String branch = inputBranch.getText().toString();
+                String roll = inputRoll.getText().toString();
+                String year = inputYear.getText().toString();
+
+                if (!(inputGender.getCheckedRadioButtonId() == -1)){
+                    if (selection.equals("Male"))
+                        selectHID = inputHosteMale.getCheckedRadioButtonId();
+                    else
+                        selectHID = inputHostelFemale.getCheckedRadioButtonId();
+
+                    if (selectHID!= -1){
+                        radioHostelButton = (RadioButton) inputGender.findViewById(selectHID);
+                        hostel = radioHostelButton.getText().toString();
+                    } else {
+                        hostel = null;
+                    }
+                }
+                else {
+                    hostel = null;
+                }
+
+                signup(name, email, password, gender, phone, branch, roll, year, hostel);
             }
         });
 
@@ -52,67 +155,134 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Finish the registration screen and return to the Login activity
+                Intent i = new Intent(getApplicationContext(),
+                        LoginActivity.class);
+                startActivity(i);
                 finish();
             }
         });
     }
 
-    public void signup() {
-        Log.d(TAG, "Signup");
+    /**
+     * Function to store user in MySQL database will post params(tag, name,
+     * email, password) to register url
+     */
+    public void signup(final String name, final String email,
+                       final String password, final String gender,
+                       final String phone, final String branch, final String roll
+                        ,final String year, final String hostel) {
+        // Tag used to cancel the request
+        String tag_string_req = "req_register";
 
-        if (!validate()) {
+        if (!validate(name, email, password, gender, phone, branch, roll, year, hostel)) {
             onSignupFailed();
             return;
         }
 
-        _signupButton.setEnabled(false);
+        pDialog.setMessage("Registering ...");
+        showDialog();
 
-        final ProgressDialog progressDialog = new ProgressDialog(Register.this);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
-        progressDialog.show();
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                AppConfig.URL_REGISTER, new Response.Listener<String>() {
 
-        String name = _nameText.getText().toString();
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Register Response: " + response.toString());
+                hideDialog();
 
-        // TODO: Implement your own signup logic here.
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    boolean error = jObj.getBoolean("error");
+                    if (!error) {
+                        session.setLogin(true);
 
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onSignupSuccess or onSignupFailed
-                        // depending on success
-                        onSignupSuccess();
-                        // onSignupFailed();
-                        progressDialog.dismiss();
+                        Log.d(TAG, "Saving data");
+                        Toast.makeText(Register.this,jObj.getString("message"),Toast.LENGTH_SHORT).show();
+
+                        // User successfully stored in MySQL
+                        // Now store the user in sqlite
+                        db.addUser(name, email,roll,hostel,gender,phone,branch,year );
+
+                        // Launch main activity
+                        Intent intent = new Intent(
+                                Register.this,
+                                MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+
+                        // Error occurred in registration. Get the error
+                        // message
+                        String errorMsg = jObj.getString("message");
+                        Toast.makeText(getApplicationContext(),
+                                errorMsg, Toast.LENGTH_LONG).show();
                     }
-                }, 3000);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Registration Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+                hideDialog();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to register url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("tag", "register");
+                params.put("name", name);
+                params.put("email", email);
+                params.put("password", password);
+                params.put("gender", gender);
+                params.put("phone", phone);
+                params.put("branch", branch);
+                params.put("roll", roll);
+                params.put("year", year);
+                params.put("hostel", hostel);
+
+                return params;
+            }
+        };
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
 
     public void onSignupSuccess() {
         _signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
-
-        //TODO: Login the user, add to db and goto main
-        Intent i = new Intent(Register.this,MainActivity.class);
-        startActivity(i);
         finish();
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "Register failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
 
         _signupButton.setEnabled(true);
     }
 
-    public boolean validate() {
+    public boolean validate(final String name, final String email,
+                            final String password, final String gender,
+                            final String phone, final String branch, final String roll
+                            ,final String year, final String hostel) {
         boolean valid = true;
-
-        String name = _nameText.getText().toString();
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
 
         if (name.isEmpty() || name.length() < 3) {
             _nameText.setError("at least 3 characters");
@@ -133,6 +303,42 @@ public class Register extends AppCompatActivity {
             valid = false;
         } else {
             _passwordText.setError(null);
+        }
+
+        if (phone.isEmpty() || phone.length() < 10) {
+            inputPhone.setError("at least 10 characters");
+            valid = false;
+        } else {
+            inputPhone.setError(null);
+        }
+
+        if (gender == null) {
+            valid = false;
+        }
+
+        if (hostel == null) {
+            valid = false;
+        }
+
+        if (roll.isEmpty() || roll.length() < 9) {
+            inputRoll.setError("at least 9 characters");
+            valid = false;
+        } else {
+            inputRoll.setError(null);
+        }
+
+        if (branch.isEmpty() || branch.length() < 3) {
+            inputBranch.setError("at least 3 characters");
+            valid = false;
+        } else {
+            inputBranch.setError(null);
+        }
+
+        if (year.isEmpty() || year.length() < 1) {
+            inputYear.setError("at least 1 characters");
+            valid = false;
+        } else {
+            inputYear.setError(null);
         }
 
         return valid;
