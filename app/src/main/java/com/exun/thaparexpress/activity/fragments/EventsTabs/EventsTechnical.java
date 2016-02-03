@@ -6,27 +6,27 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.exun.thaparexpress.adapter.AppConfig;
 import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.activity.EventDetails;
 import com.exun.thaparexpress.adapter.AppController;
 import com.exun.thaparexpress.adapter.CustomEventListAdapter;
+import com.exun.thaparexpress.adapter.RVEventTAdapter;
 import com.exun.thaparexpress.model.EventsList;
 
 import org.json.JSONArray;
@@ -49,22 +49,38 @@ public class EventsTechnical extends Fragment {
     private static final String url = AppConfig.URL_EVENTS_LIST + "Technical";
     private ProgressDialog pDialog;
     private List<EventsList> eventList = new ArrayList<EventsList>();
+
+    //old
     private ListView listView;
     private CustomEventListAdapter adapter;
+
+    //New
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_events_technical, container, false);
 
-        listView = (ListView) rootView.findViewById(R.id.listEvents);
-        adapter = new CustomEventListAdapter(getActivity(), eventList);
-        listView.setAdapter(adapter);
+        //old
+//        listView = (ListView) rootView.findViewById(R.id.listEvents);
+//        adapter = new CustomEventListAdapter(getActivity(), eventList);
+//        listView.setAdapter(adapter);
 
         pDialog = new ProgressDialog(getActivity());
         // Showing progress dialog before making http request
         pDialog.setMessage("Loading...");
         pDialog.show();
+
+        //new
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.event_rv);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new RVEventTAdapter(eventList);
+        mRecyclerView.setAdapter(mAdapter);
 
         // Creating volley request obj
         StringRequest eventReq = new StringRequest(Request.Method.GET, url,
@@ -141,8 +157,7 @@ public class EventsTechnical extends Fragment {
                             } else {
                                 // Error in login. Get the error message
                                 String errorMsg = jObj.getString("message");
-                                Toast.makeText(getActivity(),
-                                        errorMsg, Toast.LENGTH_LONG).show();
+                                Log.d(TAG,errorMsg);
                             }
                         } catch (JSONException e) {
                             // JSON error
@@ -152,7 +167,12 @@ public class EventsTechnical extends Fragment {
 
                         // notifying list adapter about data changes
                         // so that it renders the list view with updated data
-                        adapter.notifyDataSetChanged();
+
+                        //old
+//                        adapter.notifyDataSetChanged();
+
+                        //new
+                        mAdapter.notifyDataSetChanged();
 
                     }
                 }, new Response.ErrorListener() {
@@ -160,8 +180,6 @@ public class EventsTechnical extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getActivity(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
                 hidePDialog();
             }
 
@@ -170,11 +188,52 @@ public class EventsTechnical extends Fragment {
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(eventReq);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        //old
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//
+//                EventsList s = eventList.get(i);
+//                int socId = s.getSocID(), id = s.getEventId();
+//                String title = s.getEventName();
+//                String date = s.getDate();
+//                String desc = s.getEventDesc();
+//                String time = s.getEventTime();
+//                String cost = s.getEventCost();
+//                String short_desc = s.getEventShortDesc();
+//                String image = s.getEventImage();
+//                String venue = s.getEventVenue();
+//
+//                Intent intent = new Intent(getActivity(), EventDetails.class);
+//                intent.putExtra("title", title);
+//                intent.putExtra("date", date);
+//                intent.putExtra("desc", desc);
+//                intent.putExtra("time", time);
+//                intent.putExtra("cost", cost);
+//                intent.putExtra("short_desc", short_desc);
+//                intent.putExtra("image", image);
+//                intent.putExtra("venue", venue);
+//                intent.putExtra("socId", socId);
+//                intent.putExtra("id", id);
+//                startActivity(intent);
+//            }
+//        });
 
-                EventsList s = eventList.get(i);
+
+
+        // Inflate the layout for this fragment
+        return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((RVEventTAdapter) mAdapter).setOnItemClickListener(new RVEventTAdapter
+                .MyClickListener() {
+            @Override
+            public void onItemClick(int position, View v) {
+
+                EventsList s = eventList.get(position);
                 int socId = s.getSocID(), id = s.getEventId();
                 String title = s.getEventName();
                 String date = s.getDate();
@@ -199,9 +258,6 @@ public class EventsTechnical extends Fragment {
                 startActivity(intent);
             }
         });
-
-        // Inflate the layout for this fragment
-        return rootView;
     }
 
     @Override

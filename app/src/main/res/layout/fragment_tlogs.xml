@@ -1,23 +1,37 @@
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<!--<android.support.design.widget.CoordinatorLayout-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="#fff">-->
+
+    <!--<LinearLayout android:layout_width="match_parent"-->
+        <!--android:id="@+id/container_body"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<ListView-->
+            <!--android:id="@+id/blogList"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:divider="@color/list_divider"-->
+            <!--android:dividerHeight="1dp"-->
+            <!--android:listSelector="@drawable/list_row_selector" />-->
+
+    <!--</LinearLayout>-->
+
+<!--</android.support.design.widget.CoordinatorLayout>-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    >
+
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/blog_rv"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff">
+    android:scrollbars="vertical"/>
 
-    <LinearLayout android:layout_width="match_parent"
-        android:id="@+id/container_body"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <ListView
-            android:id="@+id/blogList"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:divider="@color/list_divider"
-            android:dividerHeight="1dp"
-            android:listSelector="@drawable/list_row_selector" />
-
-    </LinearLayout>
-
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

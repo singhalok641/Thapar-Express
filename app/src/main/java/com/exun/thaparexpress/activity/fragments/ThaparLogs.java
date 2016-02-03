@@ -4,14 +4,12 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -22,7 +20,7 @@ import com.exun.thaparexpress.activity.FullBlog;
 import com.exun.thaparexpress.adapter.AppConfig;
 import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.adapter.AppController;
-import com.exun.thaparexpress.adapter.CustomBlogListAdapter;
+import com.exun.thaparexpress.adapter.RVBlogAdapter;
 import com.exun.thaparexpress.model.BlogsList;
 
 import org.json.JSONArray;
@@ -44,22 +42,28 @@ public class ThaparLogs extends Fragment{
     private static final String url = AppConfig.URL_BLOGS_LIST;
     private ProgressDialog pDialog;
     private List<BlogsList> blogList = new ArrayList<BlogsList>();
-    private ListView listView;
-    private CustomBlogListAdapter adapter;
+
+    //New
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_tlogs, container, false);
 
-        listView = (ListView) rootView.findViewById(R.id.blogList);
-        adapter = new CustomBlogListAdapter(getActivity(), blogList);
-        listView.setAdapter(adapter);
-
         pDialog = new ProgressDialog(getActivity());
         // Showing progress dialog before making http request
         pDialog.setMessage("Loading...");
         pDialog.show();
+
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.blog_rv);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new RVBlogAdapter(blogList);
+        mRecyclerView.setAdapter(mAdapter);
 
         // Creating volley request obj
         StringRequest blogReq = new StringRequest(Request.Method.GET,url,
@@ -104,17 +108,19 @@ public class ThaparLogs extends Fragment{
                                 // Error in login. Get the error message
                                 String errorMsg = jObj.getString("message");
                                 Toast.makeText(getActivity(),
-                                        errorMsg, Toast.LENGTH_LONG).show();
+                                        "Connection failed! :(", Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             // JSON error
                             e.printStackTrace();
+                            Toast.makeText(getActivity(),
+                                    "Connection failed! :(", Toast.LENGTH_LONG).show();
                             Log.d("Events","Json error: " + e.getMessage());
                         }
 
                         // notifying list adapter about data changes
                         // so that it renders the list view with updated data
-                        adapter.notifyDataSetChanged();
+                        mAdapter.notifyDataSetChanged();
 
                     }
                 }, new Response.ErrorListener() {
@@ -123,7 +129,7 @@ public class ThaparLogs extends Fragment{
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Error: " + error.getMessage());
                 Toast.makeText(getActivity(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
+                        "Connection failed! :(", Toast.LENGTH_LONG).show();
                 hidePDialog();
             }
 
@@ -132,9 +138,17 @@ public class ThaparLogs extends Fragment{
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(blogReq);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        // Inflate the layout for this fragment
+        return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((RVBlogAdapter) mAdapter).setOnItemClickListener(new RVBlogAdapter
+                .MyClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(int position, View v) {
 
                 Intent i = new Intent(getActivity(), FullBlog.class);
                 BlogsList m = blogList.get(position);
@@ -155,9 +169,6 @@ public class ThaparLogs extends Fragment{
                 startActivity(i);
             }
         });
-
-        // Inflate the layout for this fragment
-        return rootView;
     }
 
     @Override

@@ -3,11 +3,38 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
+    <LinearLayout
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        android:background="@color/lightPrimary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Ayush Pahwa"
+            android:textColor="#fff"
+            android:paddingLeft="20dp"
+            android:paddingTop="75dp"
+            android:id="@+id/name" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="101412011"
+            android:textColor="#fff"
+            android:paddingLeft="20dp"
+            android:id="@+id/roll" />
+    </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/drawerList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp" />
+        android:layout_marginTop="6dp"
+        android:layout_below="@id/head"/>
 
 
 </RelativeLayout>

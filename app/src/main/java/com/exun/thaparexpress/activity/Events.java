@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.adapter.SlidingTabLayout;
@@ -91,6 +92,14 @@ public class Events extends AppCompatActivity implements FragmentDrawer.Fragment
                 break;
             case 3:
                 i.putExtra("selectionId",3);
+                startActivity(i);
+                finish();
+                break;
+            case 4:
+                Toast.makeText(getApplicationContext(), "Coming soon :D", Toast.LENGTH_SHORT).show();
+                break;
+            case 5:
+                i.putExtra("selectionId",5);
                 startActivity(i);
                 finish();
                 break;

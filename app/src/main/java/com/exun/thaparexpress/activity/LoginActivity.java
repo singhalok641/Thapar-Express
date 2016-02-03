@@ -2,6 +2,7 @@ package com.exun.thaparexpress.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -48,10 +49,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+//
+//        setSupportActionBar(mToolbar);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         _emailText = (EditText) findViewById(R.id.input_email);
         _passwordText = (EditText) findViewById(R.id.input_password);
@@ -112,8 +113,6 @@ public class LoginActivity extends AppCompatActivity {
         final String email = _emailText.getText().toString();
         final String password = _passwordText.getText().toString();
 
-        // TODO: Implement your own authentication logic here.
-
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 AppConfig.URL_LOGIN, new Response.Listener<String>() {
 
@@ -133,7 +132,8 @@ public class LoginActivity extends AppCompatActivity {
                         session.setLogin(true);
 
                         Log.d(TAG, "Saving data");
-                        Toast.makeText(LoginActivity.this,jObj.getString("message"),Toast.LENGTH_SHORT).show();
+                        String message = jObj.getString("message");
+                        Toast.makeText(LoginActivity.this,message,Toast.LENGTH_SHORT).show();
 
                         JSONObject user = jObj.getJSONObject("user");
 
@@ -159,11 +159,15 @@ public class LoginActivity extends AppCompatActivity {
                         // Error in login. Get the error message
                         String errorMsg = jObj.getString("message");
                         Toast.makeText(getApplicationContext(),
-                                errorMsg, Toast.LENGTH_LONG).show();
+                                "Login Failed! :/", Toast.LENGTH_LONG).show();
+                        Log.e(TAG,errorMsg);
+                        _loginButton.setEnabled(true);
 
                     }
                 } catch (JSONException e) {
                     // JSON error
+                    Toast.makeText(getApplicationContext(),
+                            "Login Failed! :/", Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
 

@@ -115,12 +115,14 @@ public class Home extends Fragment{
                                 // Error in login. Get the error message
                                 String errorMsg = jObj.getString("message");
                                 Toast.makeText(getActivity(),
-                                        errorMsg, Toast.LENGTH_LONG).show();
+                                        "Connection failed! :(", Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             // JSON error
                             e.printStackTrace();
                             Log.d(TAG,"Json error: " + e.getMessage());
+                            Toast.makeText(getActivity().getApplicationContext(),
+                                    "Connection lost! :(", Toast.LENGTH_LONG).show();
                         }
 
                         if (updatesLists == null){
@@ -154,6 +156,9 @@ public class Home extends Fragment{
 
                 // adding updates to updates array
                 updatesLists.add(updates);
+                adapter.notifyDataSetChanged();
+                Toast.makeText(getActivity(),
+                        "Connection failed! :(", Toast.LENGTH_LONG).show();
                 hidePDialog();
             }
 

@@ -125,8 +125,7 @@ public class Technical extends Fragment{
                             } else {
                                 // Error in login. Get the error message
                                 String errorMsg = jObj.getString("message");
-                                Toast.makeText(getActivity(),
-                                        errorMsg, Toast.LENGTH_LONG).show();
+                                Log.d(TAG,errorMsg);
                             }
                         } catch (JSONException e) {
                             // JSON error
@@ -144,8 +143,6 @@ public class Technical extends Fragment{
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getActivity(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
                 hidePDialog();
             }
 

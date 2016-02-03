@@ -36,7 +36,7 @@
                 android:layout_marginLeft="9dp"
                 android:layout_marginTop="18dp"
                 android:text="@string/gmann"
-                android:textColor="#282828"
+                android:textColor="@color/colorPrimary"
                 android:textSize="18dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="sans-serif-condensed"

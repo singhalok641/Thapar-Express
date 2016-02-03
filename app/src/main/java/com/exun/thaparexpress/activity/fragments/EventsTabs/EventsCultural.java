@@ -6,13 +6,14 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ import com.exun.thaparexpress.activity.EventDetails;
 import com.exun.thaparexpress.adapter.AppConfig;
 import com.exun.thaparexpress.adapter.AppController;
 import com.exun.thaparexpress.adapter.CustomEventListAdapter;
+import com.exun.thaparexpress.adapter.RVEventCAdapter;
 import com.exun.thaparexpress.model.EventsList;
 
 import org.json.JSONArray;
@@ -46,17 +48,28 @@ public class EventsCultural extends Fragment {
     private static final String url = AppConfig.URL_EVENTS_LIST + "Cultural";
     private ProgressDialog pDialog;
     private List<EventsList> eventList = new ArrayList<EventsList>();
+
+    //old
     private ListView listView;
     private CustomEventListAdapter adapter;
+
+    //New
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_events_cultural, container, false);
 
-        listView = (ListView) rootView.findViewById(R.id.listEvents);
-        adapter = new CustomEventListAdapter(getActivity(), eventList);
-        listView.setAdapter(adapter);
+        //new
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.event_rv);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new RVEventCAdapter(eventList);
+        mRecyclerView.setAdapter(mAdapter);
 
         pDialog = new ProgressDialog(getActivity());
         // Showing progress dialog before making http request
@@ -136,20 +149,28 @@ public class EventsCultural extends Fragment {
                                 }
 
                             } else {
-                                // Error in login. Get the error message
+                                // Error in loading. Get the error message
                                 String errorMsg = jObj.getString("message");
-                                Toast.makeText(getActivity(),
-                                        errorMsg, Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity().getApplicationContext(),
+                                        "Connection lost! :(", Toast.LENGTH_LONG).show();
+                                Log.d(TAG, "Json error: " +errorMsg);
                             }
                         } catch (JSONException e) {
                             // JSON error
                             e.printStackTrace();
+                            Toast.makeText(getActivity().getApplicationContext(),
+                                    "Connection lost! :(", Toast.LENGTH_LONG).show();
                             Log.d("Events", "Json error: " + e.getMessage());
                         }
 
                         // notifying list adapter about data changes
                         // so that it renders the list view with updated data
-                        adapter.notifyDataSetChanged();
+
+                        //old
+//                        adapter.notifyDataSetChanged();
+
+                        //new
+                        mAdapter.notifyDataSetChanged();
 
                     }
                 }, new Response.ErrorListener() {
@@ -157,8 +178,9 @@ public class EventsCultural extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getActivity(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity().getApplicationContext(),
+                        "Connection lost! :(", Toast.LENGTH_LONG).show();
+                Log.d(TAG, "Json error: " + error.getMessage());
                 hidePDialog();
             }
 
@@ -167,11 +189,49 @@ public class EventsCultural extends Fragment {
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(eventReq);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//
+//                EventsList s = eventList.get(i);
+//                int socId = s.getSocID(), id = s.getEventId();
+//                String title = s.getEventName();
+//                String date = s.getDate();
+//                String desc = s.getEventDesc();
+//                String time = s.getEventTime();
+//                String cost = s.getEventCost();
+//                String short_desc = s.getEventShortDesc();
+//                String image = s.getEventImage();
+//                String venue = s.getEventVenue();
+//
+//                Intent intent = new Intent(getActivity(), EventDetails.class);
+//                intent.putExtra("title", title);
+//                intent.putExtra("date", date);
+//                intent.putExtra("desc", desc);
+//                intent.putExtra("time", time);
+//                intent.putExtra("cost", cost);
+//                intent.putExtra("short_desc", short_desc);
+//                intent.putExtra("image", image);
+//                intent.putExtra("venue", venue);
+//                intent.putExtra("socId", socId);
+//                intent.putExtra("id", id);
+//                startActivity(intent);
+//            }
+//        });
 
-                EventsList s = eventList.get(i);
+        // Inflate the layout for this fragment
+        return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((RVEventCAdapter) mAdapter).setOnItemClickListener(new RVEventCAdapter
+                .MyClickListener() {
+            @Override
+            public void onItemClick(int position, View v) {
+
+                EventsList s = eventList.get(position);
                 int socId = s.getSocID(), id = s.getEventId();
                 String title = s.getEventName();
                 String date = s.getDate();
@@ -196,9 +256,6 @@ public class EventsCultural extends Fragment {
                 startActivity(intent);
             }
         });
-
-        // Inflate the layout for this fragment
-        return rootView;
     }
 
     @Override

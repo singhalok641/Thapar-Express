@@ -13,10 +13,14 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.exun.thaparexpress.Helper.SQLiteHandler;
 import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.adapter.NavigationDrawerAdapter;
 import com.exun.thaparexpress.model.NavDrawerItem;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +33,16 @@ public class FragmentDrawer extends Fragment {
     private static String TAG = FragmentDrawer.class.getSimpleName();
 
     private RecyclerView recyclerView;
+    private TextView name, roll;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private NavigationDrawerAdapter adapter;
     private View containerView;
     private static String[] titles = null;
+    private static int [] icons = {R.drawable.ic_home_grey600_24dp,R.drawable.ic_account_multiple_grey600_24dp,R.drawable.ic_calendar_clock_grey600_24dp,R.drawable.ic_comment_text_grey600_24dp,R.drawable.ic_swap_horizontal_grey600_24dp,R.drawable.ic_information_grey600_24dp};
     private FragmentDrawerListener drawerListener;
+    private String sname, sroll;
+    private SQLiteHandler db;
 
     public FragmentDrawer() {
 
@@ -52,6 +60,7 @@ public class FragmentDrawer extends Fragment {
         for (int i = 0; i < titles.length; i++) {
             NavDrawerItem navItem = new NavDrawerItem();
             navItem.setTitle(titles[i]);
+            navItem.setIcon(icons[i]);
             data.add(navItem);
         }
         return data;
@@ -71,6 +80,15 @@ public class FragmentDrawer extends Fragment {
         // Inflating view layout
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
+        name = (TextView) layout.findViewById(R.id.name);
+        roll = (TextView) layout.findViewById(R.id.roll);
+
+        db = new SQLiteHandler(getActivity().getApplicationContext());
+        sname = db.getUserDetails().get("name");
+        sroll = db.getUserDetails().get("roll");
+
+        name.setText(sname);
+        roll.setText(sroll);
 
         adapter = new NavigationDrawerAdapter(getActivity(), getData());
         recyclerView.setAdapter(adapter);

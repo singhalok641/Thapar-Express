@@ -13,6 +13,7 @@
         android:theme="@style/MyMaterialTheme">
         <activity
             android:name=".activity.MainActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +23,7 @@
         </activity>
         <activity
             android:name=".activity.Splash"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,24 +34,29 @@
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop"
+            android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".activity.Register"
             android:label="@string/title_activity_register"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".activity.Societies"
             android:label="@string/title_activity_societies"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop"
+            android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".activity.Events"
             android:label="Events"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop"
+            android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".activity.SocDetails"
             android:label="Society Members"
-            android:theme="@style/MyMaterialTheme" >
+            android:theme="@style/MyMaterialTheme"
+            android:configChanges="orientation|screenSize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.Societies" />
@@ -57,7 +64,8 @@
         <activity
             android:name=".activity.EventDetails"
             android:label="@string/title_activity_event_details"
-            android:theme="@style/MyMaterialTheme">
+            android:theme="@style/MyMaterialTheme"
+            android:configChanges="orientation|screenSize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.Events" />
@@ -65,10 +73,8 @@
         <activity
             android:name=".activity.FullBlog"
             android:label="ThaparLogs"
-            android:theme="@style/MyMaterialTheme" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.MainActivity" />
+            android:theme="@style/MyMaterialTheme"
+            android:configChanges="orientation|screenSize">
         </activity>
     </application>
 

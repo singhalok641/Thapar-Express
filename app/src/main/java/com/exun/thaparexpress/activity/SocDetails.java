@@ -164,13 +164,16 @@ public class SocDetails extends AppCompatActivity{
                                 // Error in login. Get the error message
                                 String errorMsg = jObj.getString("message");
                                 Toast.makeText(getApplicationContext(),
-                                        errorMsg, Toast.LENGTH_LONG).show();
+                                        "Connection lost! :(", Toast.LENGTH_LONG).show();
+                                Log.e(TAG,errorMsg);
                                 RelativeLayout members = (RelativeLayout) findViewById(R.id.socMembersLayout);
                                 members.setVisibility(View.INVISIBLE);
                             }
                         } catch (JSONException e) {
                             // JSON error
                             e.printStackTrace();
+                            Toast.makeText(getApplicationContext(),
+                                    "Connection lost! :(", Toast.LENGTH_LONG).show();
                             Log.d(TAG, "Json error: " + e.getMessage());
                             RelativeLayout members = (RelativeLayout) findViewById(R.id.socMembersLayout);
                             members.setVisibility(View.INVISIBLE);
@@ -187,7 +190,8 @@ public class SocDetails extends AppCompatActivity{
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
+                        "Connection lost! :(", Toast.LENGTH_LONG).show();
+                Log.d(TAG, "Json error: " + error.getMessage());
                 hidePDialog();
             }
 

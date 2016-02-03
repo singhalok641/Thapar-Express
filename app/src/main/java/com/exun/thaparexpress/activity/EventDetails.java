@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,21 +14,12 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.NetworkImageView;
-import com.exun.thaparexpress.adapter.AppConfig;
 import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.adapter.AppController;
 import com.exun.thaparexpress.adapter.CustomEventDetailsAdapter;
 import com.exun.thaparexpress.model.EventsDetailsList;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,17 +67,21 @@ public class EventDetails extends AppCompatActivity {
             imageURL = bun.getString("image");
         }
 
-        String sText[] = {sVenue,sCost,sTime, sDate, sDesc};
+        TextView venue,cost, time, date, desc;
+        venue = (TextView) findViewById(R.id.venue);
+        cost = (TextView) findViewById(R.id.cost);
+        time = (TextView) findViewById(R.id.time);
+        desc = (TextView) findViewById(R.id.desc);
+        date = (TextView) findViewById(R.id.date);
+
 
         getSupportActionBar().setTitle(sTitle);
 
-        for (int i=0; i<5; i++){
-            EventsDetailsList listX = new EventsDetailsList();
-            listX.setDetailHead(sHead[i]);
-            listX.setDetailText(sText[i]);
-
-            eventList.add(listX);
-        }
+        venue.setText(sVenue);
+        cost.setText(sCost);
+        date.setText(sDate);
+        desc.setText(sDesc);
+        time.setText(sTime);
 
         image = (NetworkImageView) findViewById(R.id.image);
 
@@ -96,20 +90,6 @@ public class EventDetails extends AppCompatActivity {
 
         image.setImageUrl(imageURL,imageLoader);
 
-        listView = (ListView) findViewById(R.id.listEvents);
-        adapter = new CustomEventDetailsAdapter(this, eventList);
-        listView.setAdapter(adapter);
-        setListViewHeightBasedOnChildren(listView);
-
-        listView.setOnTouchListener(new View.OnTouchListener() {
-            // Setting on Touch Listener for handling the touch inside ScrollView
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // Disallow the touch request for parent scroll on touch of child view
-                v.getParent().requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
 
         /*pDialog = new ProgressDialog(this);
         // Showing progress dialog before making http request

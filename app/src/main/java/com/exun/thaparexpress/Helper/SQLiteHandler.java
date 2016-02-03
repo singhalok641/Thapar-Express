@@ -15,13 +15,13 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database Name
-    private static final String DATABASE_NAME = "android_api";
+    private static final String DATABASE_NAME = "ThaparExpress";
 
     // Login table name
-    private static final String TABLE_USER = "user";
+    private static final String TABLE_USER = "users";
 
     // Login Table Columns names
     private static final String KEY_ID = "id";
@@ -44,8 +44,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_USER + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
                 + KEY_EMAIL + " TEXT UNIQUE," + KEY_ROLL + " TEXT,"
-                + KEY_HOSTEL + " TEXT" + KEY_GENDER + " TEXT" + KEY_PHONE + " TEXT" +
-                KEY_BRANCH + " TEXT" + KEY_YEAR + " TEXT" + ")";
+                + KEY_HOSTEL + " TEXT," + KEY_GENDER + " TEXT," + KEY_PHONE + " TEXT," +
+                KEY_BRANCH + " TEXT," + KEY_YEAR + " TEXT" + ")";
         db.execSQL(CREATE_LOGIN_TABLE);
 
         Log.d(TAG, "Database tables created");

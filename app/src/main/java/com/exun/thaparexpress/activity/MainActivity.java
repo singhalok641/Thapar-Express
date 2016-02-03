@@ -13,7 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.exun.thaparexpress.Helper.SQLiteHandler;
 import com.exun.thaparexpress.R;
+import com.exun.thaparexpress.activity.fragments.About;
 import com.exun.thaparexpress.activity.fragments.Home;
 import com.exun.thaparexpress.activity.fragments.ThaparLogs;
 
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
 
         drawerFragment = (FragmentDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
@@ -78,6 +82,13 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             case 3:
                 fragment = new ThaparLogs();
                 title = "ThaparLogs";
+                break;
+            case 4:
+                Toast.makeText(getApplicationContext(),"Coming soon :D",Toast.LENGTH_SHORT).show();
+                break;
+            case 5:
+                fragment = new About();
+                title = "About";
                 break;
             default:
                 break;

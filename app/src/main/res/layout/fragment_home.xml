@@ -15,7 +15,7 @@
         android:text="What's new?"
         android:fontFamily="sans-serif-condensed"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#00bf8f"
+        android:textColor="@color/colorPrimaryDark"
         android:textStyle="italic"
         android:typeface="normal"
         android:layout_alignParentTop="true"

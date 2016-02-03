@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.exun.thaparexpress.R;
@@ -50,6 +51,7 @@ public class CustomUpdateListAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.list_row_updates, null);
 
+        ImageView iv = (ImageView) convertView.findViewById(R.id.notif);
         TextView title = (TextView) convertView.findViewById(R.id.title);
         TextView message = (TextView) convertView.findViewById(R.id.message);
         int color;
@@ -66,9 +68,7 @@ public class CustomUpdateListAdapter extends BaseAdapter {
         //message
         message.setText(m.getUpdate());
 
-        //color
-        title.setTextColor(color);
-        message.setTextColor(color);
+        iv.setBackgroundColor(color);
 
         return convertView;
     }

@@ -125,12 +125,15 @@ public class Cultural extends Fragment {
                             } else {
                                 // Error in login. Get the error message
                                 String errorMsg = jObj.getString("message");
-                                Toast.makeText(getActivity(),
-                                        errorMsg, Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity().getApplicationContext(),
+                                        "Connection lost! :(", Toast.LENGTH_LONG).show();
+                                Log.d(TAG, "Json error: " + errorMsg);
                             }
                         } catch (JSONException e) {
                             // JSON error
                             e.printStackTrace();
+                            Toast.makeText(getActivity().getApplicationContext(),
+                                    "Connection lost! :(", Toast.LENGTH_LONG).show();
                             Log.d("Society", "Json error: " + e.getMessage());
                         }
 
@@ -144,8 +147,8 @@ public class Cultural extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getActivity(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity().getApplicationContext(),
+                        "Connection lost! :(", Toast.LENGTH_LONG).show();
                 hidePDialog();
             }
 

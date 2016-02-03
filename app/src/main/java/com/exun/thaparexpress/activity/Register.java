@@ -53,11 +53,6 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-
         _nameText = (EditText) findViewById(R.id.input_name);
         _emailText = (EditText) findViewById(R.id.input_email);
         _passwordText = (EditText) findViewById(R.id.input_password);
@@ -111,14 +106,6 @@ public class Register extends AppCompatActivity {
             }
         });
 
-        int selectID = inputGender.getCheckedRadioButtonId();
-        if (selectID!= -1){
-            radioSexButton = (RadioButton) inputGender.findViewById(selectID);
-            gender = radioSexButton.getText().toString();
-        } else {
-            gender = null;
-        }
-
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,14 +117,25 @@ public class Register extends AppCompatActivity {
                 String roll = inputRoll.getText().toString();
                 String year = inputYear.getText().toString();
 
+                int selectID = inputGender.getCheckedRadioButtonId();
+                if (selectID!= -1){
+                    radioSexButton = (RadioButton) inputGender.findViewById(selectID);
+                    gender = radioSexButton.getText().toString();
+                } else {
+                    gender = null;
+                }
+
                 if (!(inputGender.getCheckedRadioButtonId() == -1)){
-                    if (selection.equals("Male"))
+                    if (selection.equals("male"))
                         selectHID = inputHosteMale.getCheckedRadioButtonId();
                     else
                         selectHID = inputHostelFemale.getCheckedRadioButtonId();
 
                     if (selectHID!= -1){
-                        radioHostelButton = (RadioButton) inputGender.findViewById(selectHID);
+                        if (selection.equals("male"))
+                            radioHostelButton = (RadioButton) inputHosteMale.findViewById(selectHID);
+                        else
+                            radioHostelButton = (RadioButton) inputHostelFemale.findViewById(selectHID);
                         hostel = radioHostelButton.getText().toString();
                     } else {
                         hostel = null;
@@ -273,7 +271,7 @@ public class Register extends AppCompatActivity {
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Register failed", Toast.LENGTH_LONG).show();
 
         _signupButton.setEnabled(true);
     }
