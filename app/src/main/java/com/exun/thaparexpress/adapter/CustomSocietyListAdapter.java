@@ -22,7 +22,6 @@ public class CustomSocietyListAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
     private List<SocietyList> societyItems;
-    ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
     public CustomSocietyListAdapter(Activity activity, List<SocietyList> societyItems) {
         this.activity = activity;
@@ -53,17 +52,11 @@ public class CustomSocietyListAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.list_row_society, null);
 
-        if (imageLoader == null)
-            imageLoader = AppController.getInstance().getImageLoader();
-        NetworkImageView thumbNail = (NetworkImageView) convertView
-                .findViewById(R.id.thumbnail);
+
         TextView title = (TextView) convertView.findViewById(R.id.title);
 
         // getting society data for the row
         SocietyList m = societyItems.get(position);
-
-        // thumbnail image
-        thumbNail.setImageUrl(m.getThumbnailUrl(), imageLoader);
 
         // title
         title.setText(m.getSocietyTitle());

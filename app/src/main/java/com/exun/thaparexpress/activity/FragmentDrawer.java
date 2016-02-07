@@ -39,7 +39,10 @@ public class FragmentDrawer extends Fragment {
     private NavigationDrawerAdapter adapter;
     private View containerView;
     private static String[] titles = null;
-    private static int [] icons = {R.drawable.ic_home_grey600_24dp,R.drawable.ic_account_multiple_grey600_24dp,R.drawable.ic_calendar_clock_grey600_24dp,R.drawable.ic_comment_text_grey600_24dp,R.drawable.ic_swap_horizontal_grey600_24dp,R.drawable.ic_information_grey600_24dp};
+    private static int [] icons = {R.drawable.ic_home_grey600_24dp,R.drawable.ic_account_multiple_grey600_24dp,
+            R.drawable.ic_calendar_clock_grey600_24dp,R.drawable.ic_comment_text_grey600_24dp,
+            R.drawable.ic_swap_horizontal_grey600_24dp,R.drawable.ic_note_text_grey600_24dp,
+            R.drawable.ic_information_grey600_24dp};
     private FragmentDrawerListener drawerListener;
     private String sname, sroll;
     private SQLiteHandler db;

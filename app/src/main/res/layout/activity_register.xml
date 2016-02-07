@@ -232,34 +232,41 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/input_branch"
+                <!--<EditText android:id="@+id/input_branch"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:inputType="textCapCharacters"-->
+                    <!--android:textColor="#fff"-->
+                    <!--android:hint="Branch Code" />-->
+
+                <AutoCompleteTextView
+                    android:id="@+id/input_branch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textCapCharacters"
                     android:textColor="#fff"
-                    android:hint="Branch" />
+                    android:hint="Branch Code" />
             </android.support.design.widget.TextInputLayout>
 
 
             <!-- YEar Label -->
-            <android.support.design.widget.TextInputLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:text="Batch of"
                 android:layout_marginTop="8dp"
-                android:theme="@style/TextLabel"
-                android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/reg_year"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#fff"
-                    android:inputType="number"
-                    android:hint="Year"/>
-            </android.support.design.widget.TextInputLayout>
+                android:layout_marginBottom="4dp"/>
+
+            <NumberPicker
+                android:id="@+id/reg_year"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"/>
 
             <!-- Phone Label -->
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:theme="@style/TextLabel"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">

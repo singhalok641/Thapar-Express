@@ -2,6 +2,7 @@ package com.exun.thaparexpress.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,7 @@ public class Events extends AppCompatActivity implements FragmentDrawer.Fragment
     SlidingTabLayout tabs;
     CharSequence Titles[]={"Cultural","Technical", "Others"};
     int Numboftabs =3;
+    private boolean doubleBackToExitPressedOnce;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,10 +98,15 @@ public class Events extends AppCompatActivity implements FragmentDrawer.Fragment
                 finish();
                 break;
             case 4:
-                Toast.makeText(getApplicationContext(), "Coming soon :D", Toast.LENGTH_SHORT).show();
+                i.putExtra("selectionId", 4);
+                startActivity(i);
+                finish();
                 break;
             case 5:
-                i.putExtra("selectionId",5);
+                Toast.makeText(getApplicationContext(), "Coming soon :D", Toast.LENGTH_SHORT).show();
+                break;
+            case 6:
+                i.putExtra("selectionId",6);
                 startActivity(i);
                 finish();
                 break;
@@ -110,5 +117,14 @@ public class Events extends AppCompatActivity implements FragmentDrawer.Fragment
                 break;
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        Intent i = new Intent(Events.this,MainActivity.class);
+        i.putExtra("selectionId",0);
+        startActivity(i);
+        finish();
     }
 }

@@ -64,11 +64,12 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     /**
      * Storing user details in database
      * */
-    public void addUser(String name, String email, String roll
+    public void addUser(int id,String name, String email, String roll
             , String hostel,String gender, String phone,  String branch, String year) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(KEY_ID,id); //Id
         values.put(KEY_NAME, name); // Name
         values.put(KEY_EMAIL, email); // Email
         values.put(KEY_ROLL, roll); // ROll
@@ -79,10 +80,10 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(KEY_YEAR, year); // Year
 
         // Inserting Row
-        long id = db.insert(TABLE_USER, null, values);
+        long Sid = db.insert(TABLE_USER, null, values);
         db.close(); // Closing database connection
 
-        Log.d(TAG, "New user inserted into sqlite: " + id);
+        Log.d(TAG, "New user inserted into sqlite: " + Sid);
     }
 
     /**
@@ -97,6 +98,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         // Move to first row
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {
+            user.put("id",cursor.getString(0));
             user.put("name", cursor.getString(1));
             user.put("email", cursor.getString(2));
             user.put("roll", cursor.getString(3));

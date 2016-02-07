@@ -21,9 +21,24 @@
         <item>Events</item>
         <item>ThaparLogs</item>
         <item>Store</item>
+        <item>Syllabus</item>
         <item>About</item>
     </string-array>
 
+    <string-array name="spinner_cat">
+        <item>Book</item>
+        <item>Cycle</item>
+        <item>Clothes</item>
+        <item>Utility</item>
+        <item>Electronics</item>
+        <item>Drafter</item>
+    </string-array>
+
+    <string-array name="spinner_cond">
+        <item>Brand new</item>
+        <item>Occasionally used</item>
+        <item>Little old</item>
+    </string-array>
 
     <string name="title_activity_login">Login</string>
     <string name="title_activity_register">Register</string>

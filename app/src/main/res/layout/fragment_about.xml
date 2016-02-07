@@ -21,7 +21,7 @@
         android:textStyle="bold"
         android:typeface="normal"
         android:layout_marginTop="30dp"
-        android:text="Version 0.1"/>
+        android:text="Version 0.2"/>
 
     <TextView
         android:layout_width="match_parent"

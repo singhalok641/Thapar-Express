@@ -1,6 +1,7 @@
 package com.exun.thaparexpress.activity;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import com.exun.thaparexpress.Helper.SQLiteHandler;
 import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.activity.fragments.About;
 import com.exun.thaparexpress.activity.fragments.Home;
+import com.exun.thaparexpress.activity.fragments.Store;
 import com.exun.thaparexpress.activity.fragments.ThaparLogs;
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
+    boolean doubleBackToExitPressedOnce;
+    private int select = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         Fragment fragment = null;
         Intent i;
         String title = getString(R.string.app_name);
+        select = position;
         switch (position) {
             case 0:
                 fragment = new Home();
@@ -84,9 +89,13 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 title = "ThaparLogs";
                 break;
             case 4:
-                Toast.makeText(getApplicationContext(),"Coming soon :D",Toast.LENGTH_SHORT).show();
+                fragment = new Store();
+                title = "Store";
                 break;
             case 5:
+                Toast.makeText(getApplicationContext(),"Coming soon :D",Toast.LENGTH_SHORT).show();
+                break;
+            case 6:
                 fragment = new About();
                 title = "About";
                 break;
@@ -102,6 +111,30 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
             // set the toolbar title
             getSupportActionBar().setTitle(title);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (select == 0){
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce=false;
+                }
+            }, 2000);
+        }
+        else {
+            displayView(0);
         }
     }
 }

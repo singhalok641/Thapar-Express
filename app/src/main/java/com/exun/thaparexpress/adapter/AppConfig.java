@@ -31,4 +31,10 @@ public class AppConfig {
 
     // Events list url
     public static String URL_REGISTER = "http://thaparexpress.com/api/v2/register";
+
+    // Events list url
+    public static String URL_STORE_LIST = "http://thaparexpress.com/api/v1/store_items";
+
+    // Events list url
+    public static String URL_ADD_STORE_ITEM = "http://thaparexpress.com/api/v2/add_store_item";
 }

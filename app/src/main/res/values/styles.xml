@@ -48,4 +48,28 @@
         <item name="colorControlHighlight">#fff</item>
     </style>
 
+
+    <style name="YourAlertDialogTheme">
+        <item name="android:windowBackground">@color/lightPrimary</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+        <item name="android:windowTitleStyle">@style/alertTitle</item>
+        <!--<item name="android:textAppearanceMedium">...</item>-->
+        <item name="android:borderlessButtonStyle">@style/alertButton</item>
+        <!--<item name="android:buttonBarStyle">...</item>-->
+    </style>
+
+    <style name="alertTitle">
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="alertButton" parent="Base.Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
 </resources>
