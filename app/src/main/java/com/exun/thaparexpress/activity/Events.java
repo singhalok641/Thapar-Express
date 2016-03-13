@@ -28,7 +28,6 @@ public class Events extends AppCompatActivity implements FragmentDrawer.Fragment
     SlidingTabLayout tabs;
     CharSequence Titles[]={"Cultural","Technical", "Others"};
     int Numboftabs =3;
-    private boolean doubleBackToExitPressedOnce;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
