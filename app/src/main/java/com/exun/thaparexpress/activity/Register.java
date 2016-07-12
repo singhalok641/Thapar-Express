@@ -47,7 +47,7 @@ public class Register extends AppCompatActivity {
     Button _signupButton;
     TextView _loginLink;
     AutoCompleteTextView regBranch;
-    String gender=null,hostel=null,selection=null,year = ""+2016;
+    String gender=null,hostel=null,selection=null,year = ""+2015;
     RadioButton radioSexButton,radioHostelButton;
     int selectHID;
     private SessionManager session;
@@ -81,7 +81,7 @@ public class Register extends AppCompatActivity {
         regBranch.setThreshold(1);
         regBranch.setAdapter(adapter);
         np = (NumberPicker) findViewById(R.id.reg_year);
-        np.setMinValue(2016);
+        np.setMinValue(2015);
         np.setMaxValue(2020);
         np.setWrapSelectorWheel(true);
         Resources resources = getResources();

@@ -158,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
                         // Error in login. Get the error message
                         String errorMsg = jObj.getString("message");
                         Toast.makeText(getApplicationContext(),
-                                "Login Failed! :/", Toast.LENGTH_LONG).show();
+                                "Login Failed! :/", Toast.LENGTH_SHORT).show();
                         Log.e(TAG,errorMsg);
                         _loginButton.setEnabled(true);
 
@@ -166,7 +166,7 @@ public class LoginActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     // JSON error
                     Toast.makeText(getApplicationContext(),
-                            "Login Failed! :/", Toast.LENGTH_LONG).show();
+                            "Login Failed! :/", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
 
@@ -231,7 +231,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_SHORT).show();
 
         _loginButton.setEnabled(true);
     }
