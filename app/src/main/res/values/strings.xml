@@ -19,32 +19,90 @@
         <item>Home</item>
         <item>Societies</item>
         <item>Events</item>
-        <item>ThaparLogs</item>
+        <item>TimeTable</item>
+        <item>Thapar Logs</item>
         <item>Store</item>
-        <item>Syllabus</item>
-        <item>About</item>
+          <!-- <item>Syllabus</item> -->
+        <item>Feedback</item>
+           <item>About</item>
+       </string-array>
+
+
+       <string-array name="spinner_cat">
+           <item>Book</item>
+           <item>Cycle</item>
+           <item>Clothes</item>
+           <item>Utility</item>
+           <item>Electronics</item>
+           <item>Drafter</item>
+       </string-array>
+
+    <string-array name="year">
+        <item>Select year</item>
+        <item>2018</item>
+        <item>2019</item>
+        <item>2020</item>
     </string-array>
 
-    <string-array name="spinner_cat">
-        <item>Book</item>
-        <item>Cycle</item>
-        <item>Clothes</item>
-        <item>Utility</item>
-        <item>Electronics</item>
-        <item>Drafter</item>
+    <string-array name="branch">
+        <item>Select branch</item>>
+        <item>coe</item>
+        <item>cml</item>
+        <item>cag</item>
+        <item>ece</item>
+        <item>che</item>
+        <item>eic</item>
+        <item>cie</item>
+        <item>ele</item>
+        <item>mee</item>
+        <item>mpe</item>
+        <item>mtx</item>
+        <item>sem</item>
+        <item>enc</item>
+        <item>BTD</item>
     </string-array>
 
-    <string-array name="spinner_cond">
-        <item>Brand new</item>
-        <item>Occasionally used</item>
-        <item>Little old</item>
+    <string-array name="batch">
+        <item>Select batch</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
     </string-array>
 
-    <string name="title_activity_login">Login</string>
-    <string name="title_activity_register">Register</string>
-    <string name="title_activity_societies">Societies</string>
-    <string name="title_activity_fragment_holder">Fragment_holder</string>
-    <string name="gmann">Gurdas Maan is an Indian singer, songwriter, choreographer, and actor. He is considered one of the most notable figures in the world of Punjabi music. He was born in Giddarbaha village of the Indian state of Punjab and gained national attention in 1980 with the song "Dil Da Mamla Hai." Since then, he has gone on to record over 34 albums and has written over 305 songs. In 2013 he announced the launch of his YouTube channel to stay connected with his fans via video blogs and old as well as new music videos.</string>
-    <string name="title_activity_event_details">EventDetails</string>
+    <string-array name="_2020_batch_1">
+        <item>A</item><item>B</item> <item>C</item><item>D</item><item>E</item><item>F</item><item>G</item><item>H</item><item>I</item><item>J</item><item>K</item><item>L</item><item>M</item>
+        <item>N</item><item>O</item><item>P</item><item>Q</item><item>R</item><item>BTD</item>
+    </string-array>
 
-</resources>
+    <string-array name="_2020_batch_2">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+
+
+    </string-array>
+
+       <string-array name="spinner_cond">
+           <item>Brand new</item>
+           <item>Occasionally used</item>
+           <item>Little old</item>
+       </string-array>z
+
+       <string name="title_activity_login">Login</string>
+       <string name="title_activity_register">Register</string>
+       <string name="title_activity_societies">Societies</string>
+       <string name="title_activity_fragment_holder">Fragment_holder</string>
+       <string name="gmann">Gurdas Maan is an Indian singer, songwriter, choreographer, and actor. He is considered one of the most notable figures in the world of Punjabi music. He was born in Giddarbaha village of the Indian state of Punjab and gained national attention in 1980 with the song "Dil Da Mamla Hai." Since then, he has gone on to record over 34 albums and has written over 305 songs. In 2013 he announced the launch of his YouTube channel to stay connected with his fans via video blogs and old as well as new music videos.</string>
+       <string name="title_activity_event_details">EventDetails</string>
+
+   </resources>
+
+

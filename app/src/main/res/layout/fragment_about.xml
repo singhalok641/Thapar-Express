@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:weightSum="1">
 
 
     <ImageView
-        android:layout_width="120dp"
+        android:layout_width="162dp"
         android:layout_height="120dp"
         android:layout_marginTop="60dp"
-        android:src="@mipmap/tx_circle"
-        android:layout_gravity="center_horizontal" />
+        android:src="@drawable/tx_logo"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.11" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#e4e4e4"
         android:textIsSelectable="false"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:typeface="normal"
         android:layout_marginTop="30dp"
@@ -29,7 +32,8 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:textIsSelectable="false"
-        android:textColor="#878787"
+        android:textSize="18sp"
+        android:textColor="#e4e4e4"
         android:typeface="normal"
         android:layout_marginTop="30dp"
         android:text="Send your feedback or bugs at"/>
@@ -40,10 +44,11 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:textIsSelectable="false"
-        android:textColor="@color/colorAccent"
+        android:textColor="#e4e4e4"
+        android:textSize="18sp"
         android:textStyle="italic"
         android:autoLink="email"
         android:typeface="normal"
         android:layout_marginTop="10dp"
-        android:text="info@thaparexpress.com"/>
+        android:text="hello@thaparexpress.com"/>
 </LinearLayout>

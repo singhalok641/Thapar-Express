@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "225712003906",
+    "project_id": "txpress-140019"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:225712003906:android:29101e88fc4fa54c",
+        "android_client_info": {
+          "package_name": "com.exun.thaparexpress"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "225712003906-tbjtd1s7vfbdv8i7sln1lri4pgd8j41b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.exun.thaparexpress",
+            "certificate_hash": "AB04B8CE1CE6EEC3AA0F992207C5E27DE0329C08"
+          }
+        },
+        {
+          "client_id": "225712003906-3a0khrh5oo6g4m8ratucsiuvnjcspdhd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkyxJhYDHnctLaZFL0J0S4f0rlsyog78o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

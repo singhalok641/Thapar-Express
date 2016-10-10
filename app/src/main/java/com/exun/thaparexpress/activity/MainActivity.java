@@ -1,24 +1,21 @@
 package com.exun.thaparexpress.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.MenuItem;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
-import com.exun.thaparexpress.Helper.SQLiteHandler;
 import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.activity.fragments.About;
+import com.exun.thaparexpress.activity.fragments.Feedback;
 import com.exun.thaparexpress.activity.fragments.Home;
-import com.exun.thaparexpress.activity.fragments.Store;
 import com.exun.thaparexpress.activity.fragments.ThaparLogs;
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
@@ -29,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     private FragmentDrawer drawerFragment;
     boolean doubleBackToExitPressedOnce;
     private int select = 0;
+    String branch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
 
 
         drawerFragment = (FragmentDrawer)
@@ -85,20 +82,37 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 finish();
                 break;
             case 3:
+                //Log.e("TimeTable Activity", TAG);
+                Intent intent = new Intent(MainActivity.this,TimeTable.class);
+                startActivity(intent);
+                intent.putExtra("Branch",branch);
+                //Log.e("Check", TAG);
+                finish();
+                break;
+            case 4:
                 fragment = new ThaparLogs();
                 title = "ThaparLogs";
                 break;
-            case 4:
-                fragment = new Store();
-                title = "Store";
-                break;
             case 5:
-                Toast.makeText(getApplicationContext(),"Coming soon :D",Toast.LENGTH_SHORT).show();
+                //fragment = new Store();
+                //title = "Store";
+                Toast.makeText(MainActivity.this, "Coming Soon :D", Toast.LENGTH_SHORT).show();
                 break;
+            //case 6:
+            //    Toast.makeText(getApplicationContext(),"Coming soon :D",Toast.LENGTH_SHORT).show();
+            //    break;
+
             case 6:
+                fragment = new Feedback();
+                title = "Feedback";
+                break;
+            case 7:
                 fragment = new About();
                 title = "About";
                 break;
+
+
+
             default:
                 break;
         }
@@ -113,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             getSupportActionBar().setTitle(title);
         }
     }
+
 
     @Override
     public void onBackPressed() {

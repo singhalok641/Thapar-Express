@@ -6,35 +6,39 @@ package com.exun.thaparexpress.adapter;
 public class AppConfig {
 
     // Home fragment updates url
-    public static String URL_UPDATES = "http://thaparexpress.com/api/v1/event_updates";
+    public static String URL_UPDATES = "http://thapar.brinjal.in/api/v1/event_updates";
 
     // Home fragment updates url
-    public static String URL_SOCIETY_LIST = "http://thaparexpress.com/api/v1/societies";
+    public static String URL_SOCIETY_LIST = "http://thapar.brinjal.in/api/v1/societies";
 
     // Event details url
     public static String URL_EVENT_DEIAILS = "http://api.androidhive.info/json/movies.json";
 
     // Event details url
-    public static String URL_SOCIETY_MEMB = "http://thaparexpress.com/api/v1/societies_members/";
+    public static String URL_SOCIETY_MEMB = "http://thapar.brinjal.in/api/v1/societies_members/";
 
     // Selected society's details url
-    public static String URL_SOCIETY_DETAILS = "http://thaparexpress.com/api/v1/society_details/";
+    public static String URL_SOCIETY_DETAILS = "http://thapar.brinjal.in/api/v1/society_details/";
 
     // Blogs list url
-    public static String URL_BLOGS_LIST = "http://thaparexpress.com/api/v1/blog_posts";
+    public static String URL_BLOGS_LIST = "http://thapar.brinjal.in/api/v1/blog_posts";
 
     // Events list url
-    public static String URL_EVENTS_LIST = "http://thaparexpress.com/api/v1/events/";
+    public static String URL_EVENTS_LIST = "http://thapar.brinjal.in/api/v1/events/";
 
     // Events list url
-    public static String URL_LOGIN = "http://thaparexpress.com/api/v2/login";
+    public static String URL_LOGIN = "http://thapar.brinjal.in/api/v2/login";
 
     // Events list url
-    public static String URL_REGISTER = "http://thaparexpress.com/api/v2/register";
+    public static String URL_REGISTER = "http://thapar.brinjal.in/api/v2/register";
 
     // Events list url
-    public static String URL_STORE_LIST = "http://thaparexpress.com/api/v1/store_items";
+    public static String URL_STORE_LIST = "http://thapar.brinjal.in/api/v1/store_items";
 
     // Events list url
-    public static String URL_ADD_STORE_ITEM = "http://thaparexpress.com/api/v2/add_store_item";
+    public static String URL_ADD_STORE_ITEM = "http://thapar.brinjal.in/api/v2/add_store_item";
+
+
+
+
 }

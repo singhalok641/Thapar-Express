@@ -110,7 +110,7 @@ public class StuChaps extends Fragment{
                                                 image = "https://placeholdit.imgix.net/~text?txtsize=66&txt=" + width + "%C3%97"+px+"&w=" + width + "&h="+px;
                                             }
                                             else {
-                                                image = "http://thaparexpress.com/images/soc/thumbnails/tn_" + obj.getInt("id") + ".png";
+                                                image = "http://thapar.brinjal.in/images/soc/thumbnails/tn_" + obj.getInt("id") + ".png";
                                             }
                                         }
 

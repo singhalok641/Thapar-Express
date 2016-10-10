@@ -101,7 +101,7 @@ public class EventsCultural extends Fragment {
 
                                 if (data.length() > 0) {
 
-                                    for (int k = 0; k < data.length(); k++) {
+                                    for (int k = 0; k<data.length(); k++) {
 
                                         JSONObject obj = data.getJSONObject(k);
                                         EventsList event = new EventsList();
@@ -131,7 +131,7 @@ public class EventsCultural extends Fragment {
 
                                         String image = obj.getString("image");
                                         if (!image.equals("null")) {
-                                            String url = ("http://thaparexpress.com/superadmin/eventimg/" + image);
+                                            String url = ("http://thapar.brinjal.in/superadmin/eventimg/" + image);
                                             event.setEventImage(url);
                                         } else {
                                             DisplayMetrics metrics = new DisplayMetrics();

@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -28,14 +27,16 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginActivity extends AppCompatActivity {
-
+public class LoginActivity extends AppCompatActivity
+{
     private static final String TAG = "LoginActivity";
-    private static final int REQUEST_SIGNUP = 0;
+
 
     EditText _rollText, _passwordText;
+
     Button _loginButton;
     TextView _signupLink;
+    EditText username;
     Toolbar mToolbar;
     ProgressDialog progressDialog;
     private SessionManager session;
@@ -51,10 +52,17 @@ public class LoginActivity extends AppCompatActivity {
 //        setSupportActionBar(mToolbar);
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+
         _rollText = (EditText) findViewById(R.id.input_roll);
         _passwordText = (EditText) findViewById(R.id.input_password);
         _loginButton = (Button) findViewById(R.id.btn_login);
         _signupLink = (TextView) findViewById(R.id.link_signup);
+        username = (EditText) findViewById(R.id.input_name);
+
+        // Progress dialog
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setIndeterminate(true);
 
         // SQLite database handler
         db = new SQLiteHandler(getApplicationContext());
@@ -78,13 +86,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
         _signupLink.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                // Start the Signup activity
-                Intent intent = new Intent(getApplicationContext(), Register.class);
-                startActivity(intent);
+                // Start the Sign up activity
+                Intent i = new Intent(getApplicationContext(), SignUp.class);
+                startActivity(i);
                 finish();
             }
         });
@@ -144,8 +153,12 @@ public class LoginActivity extends AppCompatActivity {
                         String roll = user.getString("roll");
                         String year = user.getString("year");
                         String hostel = user.getString("hostel");
+                        String batch_code=user.getString("batch_code");
+                        String url=user.getString("url");
 
-                        db.addUser(id,name, email,roll,hostel,gender,phone,branch,year );
+
+
+                        db.addUser(id,name,email,roll,hostel,gender,phone,branch,year,batch_code,url);
 
                         Log.d(TAG,"Starting main activity");
 
@@ -242,15 +255,15 @@ public class LoginActivity extends AppCompatActivity {
         String roll = _rollText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        if (roll.isEmpty() || roll.length()<9 || roll.length()>9) {
+        if (roll.isEmpty() || roll.length()<9 ) {
             _rollText.setError("enter a valid roll number");
             valid = false;
         } else {
             _rollText.setError(null);
         }
 
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            _passwordText.setError("between 4 and 10 alphanumeric characters");
+        if (password.isEmpty() || password.length() < 4) {
+            _passwordText.setError("more than 4 alphanumeric characters");
             valid = false;
         } else {
             _passwordText.setError(null);
@@ -258,4 +271,5 @@ public class LoginActivity extends AppCompatActivity {
 
         return valid;
     }
+
 }

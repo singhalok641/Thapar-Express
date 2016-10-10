@@ -2,13 +2,10 @@ package com.exun.thaparexpress.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,7 +13,8 @@ import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.adapter.SlidingTabLayout;
 import com.exun.thaparexpress.adapter.ViewPagerAdapterSocieties;
 
-public class Societies extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
+public class Societies extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener
+ {
 
     // Declaring Your View and Variables
 
@@ -25,8 +23,8 @@ public class Societies extends AppCompatActivity implements FragmentDrawer.Fragm
     ViewPager pager;
     ViewPagerAdapterSocieties adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"Cultural","Student Chapters", "Technical"};
-    int Numboftabs =3;
+    CharSequence Titles[] = {"Cultural", "Student Chapters", "Technical"};
+    int Numboftabs = 3;
     private boolean doubleBackToExitPressedOnce;
 
     @Override
@@ -103,8 +101,18 @@ public class Societies extends AppCompatActivity implements FragmentDrawer.Fragm
             case 5:
                 Toast.makeText(getApplicationContext(), "Coming soon :D", Toast.LENGTH_SHORT).show();
                 break;
+            //case 6:
+            //    i.putExtra("selectionId",6);
+            //    startActivity(i);
+            //    finish();
+            //    break;
             case 6:
                 i.putExtra("selectionId",6);
+                startActivity(i);
+                finish();
+                break;
+            case 7:
+                i.putExtra("selectionId",7);
                 startActivity(i);
                 finish();
                 break;
@@ -123,5 +131,9 @@ public class Societies extends AppCompatActivity implements FragmentDrawer.Fragm
         i.putExtra("selectionId",0);
         startActivity(i);
         finish();
+
     }
-}
+
+    }
+
+

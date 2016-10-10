@@ -15,15 +15,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.exun.thaparexpress.adapter.AppConfig;
 import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.activity.EventDetails;
+import com.exun.thaparexpress.adapter.AppConfig;
 import com.exun.thaparexpress.adapter.AppController;
 import com.exun.thaparexpress.adapter.CustomEventListAdapter;
 import com.exun.thaparexpress.adapter.RVEventTAdapter;
@@ -107,7 +106,7 @@ public class EventsTechnical extends Fragment {
 
                                 if (data.length() > 0) {
 
-                                    for (int k = 0; k < data.length(); k++) {
+                                    for (int k =0 ; k <data.length() ; k++) {
 
                                         JSONObject obj = data.getJSONObject(k);
                                         EventsList event = new EventsList();
@@ -137,7 +136,7 @@ public class EventsTechnical extends Fragment {
 
                                         String image = obj.getString("image");
                                         if (!image.equals("null")) {
-                                            String url = ("http://thaparexpress.com/superadmin/eventimg/" + image);
+                                            String url = ("http://thapar.brinjal.in/superadmin/eventimg/" + image);
                                             event.setEventImage(url);
                                         } else {
                                             DisplayMetrics metrics = new DisplayMetrics();

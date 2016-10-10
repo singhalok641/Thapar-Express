@@ -15,15 +15,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.exun.thaparexpress.Helper.SQLiteHandler;
 import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.adapter.NavigationDrawerAdapter;
 import com.exun.thaparexpress.model.NavDrawerItem;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by n00b on 11/25/2015.
@@ -40,12 +42,15 @@ public class FragmentDrawer extends Fragment {
     private View containerView;
     private static String[] titles = null;
     private static int [] icons = {R.drawable.ic_home_grey600_24dp,R.drawable.ic_account_multiple_grey600_24dp,
-            R.drawable.ic_calendar_clock_grey600_24dp,R.drawable.ic_comment_text_grey600_24dp,
+            R.drawable.ic_calendar_clock_grey600_24dp,R.drawable.ic_account_multiple_grey600_18dp,R.drawable.ic_comment_text_grey600_24dp,
             R.drawable.ic_swap_horizontal_grey600_24dp,R.drawable.ic_note_text_grey600_24dp,
             R.drawable.ic_information_grey600_24dp};
     private FragmentDrawerListener drawerListener;
     private String sname, sroll;
     private SQLiteHandler db;
+    private String url;
+    private CircleImageView _profile;
+    ;
 
     public FragmentDrawer() {
 
@@ -85,13 +90,22 @@ public class FragmentDrawer extends Fragment {
         recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
         name = (TextView) layout.findViewById(R.id.name);
         roll = (TextView) layout.findViewById(R.id.roll);
+        _profile=(CircleImageView)layout.findViewById(R.id.profile_image);
+
 
         db = new SQLiteHandler(getActivity().getApplicationContext());
         sname = db.getUserDetails().get("name");
         sroll = db.getUserDetails().get("roll");
-
+        url=db.getUserDetails().get("url");
         name.setText(sname);
         roll.setText(sroll);
+
+        Glide.with(getActivity()).load(url)
+                .thumbnail(0.5f)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(_profile);
+
 
         adapter = new NavigationDrawerAdapter(getActivity(), getData());
         recyclerView.setAdapter(adapter);

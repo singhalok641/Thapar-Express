@@ -16,9 +16,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.activity.FullBlog;
 import com.exun.thaparexpress.adapter.AppConfig;
-import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.adapter.AppController;
 import com.exun.thaparexpress.adapter.RVBlogAdapter;
 import com.exun.thaparexpress.model.BlogsList;
@@ -39,7 +39,7 @@ public class ThaparLogs extends Fragment{
     private static final String TAG ="Blogs";
 
     // blogs json url
-    private static final String url = AppConfig.URL_BLOGS_LIST;
+    private String url= AppConfig.URL_BLOGS_LIST;
     private ProgressDialog pDialog;
     private List<BlogsList> blogList = new ArrayList<BlogsList>();
 
@@ -145,6 +145,8 @@ public class ThaparLogs extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
+
+
         ((RVBlogAdapter) mAdapter).setOnItemClickListener(new RVBlogAdapter
                 .MyClickListener() {
             @Override
@@ -154,12 +156,12 @@ public class ThaparLogs extends Fragment{
                 BlogsList m = blogList.get(position);
 
                 String blogName = "a",blogDate= "a",blogText= "a";
-                int blogId = 1;
+                int blogId =1;
 
-                 blogName = m.getBlogName();
-                 blogDate = m.getBlogDate();
-                 blogId = m.getBlogId();
-                 blogText = m.getBlogText();
+                blogName = m.getBlogName();
+                blogDate = m.getBlogDate();
+                blogId = m.getBlogId();
+                blogText = m.getBlogText();
 
                 i.putExtra("name", blogName);
                 i.putExtra("text", blogText);

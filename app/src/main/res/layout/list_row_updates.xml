@@ -38,7 +38,7 @@
         android:textColor="@color/colorAccent"
         android:textStyle="italic"
         android:typeface="normal"
-        android:layout_alignBottom="@+id/notif"
+        android:layout_below="@+id/title"
         android:layout_alignStart="@+id/title" />
 
 

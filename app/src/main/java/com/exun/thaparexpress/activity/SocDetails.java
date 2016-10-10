@@ -1,10 +1,8 @@
 package com.exun.thaparexpress.activity;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -15,9 +13,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,19 +21,15 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.StringRequest;
-import com.exun.thaparexpress.adapter.AppConfig;
 import com.exun.thaparexpress.R;
+import com.exun.thaparexpress.adapter.AppConfig;
 import com.exun.thaparexpress.adapter.AppController;
 import com.exun.thaparexpress.adapter.CustomSocMembGridAdapter;
-import com.exun.thaparexpress.model.BlogsList;
 import com.exun.thaparexpress.model.ExpandableHeightGridView;
 import com.exun.thaparexpress.model.SocMembList;
-import com.exun.thaparexpress.model.SocietyList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -76,7 +68,7 @@ public class SocDetails extends AppCompatActivity{
         Bundle bundle = getIntent().getExtras();
         String title = bundle.getString("title");
         final int id = bundle.getInt("id");
-        String imageURL = "http://thaparexpress.com/images/soc/" + id + ".png";
+        String imageURL = "http://thapar.brinjal.in/images/soc/" + id + ".png";
         url = AppConfig.URL_SOCIETY_MEMB  + id;
         String about = bundle.getString("desc");
 

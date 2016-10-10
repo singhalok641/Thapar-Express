@@ -15,7 +15,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 6;
 
     // Database Name
     private static final String DATABASE_NAME = "ThaparExpress";
@@ -33,20 +33,35 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     private static final String KEY_PHONE = "phone";
     private static final String KEY_BRANCH = "branch";
     private static final String KEY_YEAR = "year";
+    private static final String KEY_url = "url";
+    private static final String KEY_BATCH_CODE = "batch_code";
+
 
     public SQLiteHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+        String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_USER + "("
+            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
+            + KEY_EMAIL + " TEXT UNIQUE," + KEY_ROLL + " TEXT,"
+            + KEY_HOSTEL + " TEXT," + KEY_GENDER + " TEXT," + KEY_PHONE + " TEXT," +
+            KEY_BRANCH + " TEXT," + KEY_YEAR + " TEXT," + KEY_BATCH_CODE+ "TEXT," + KEY_url+"TEXT"+");";
+
+
+
+    private static final String DATABASE_ALTER_TEAM_2 = "ALTER TABLE "
+            + TABLE_USER + " ADD COLUMN " + KEY_BATCH_CODE + " TEXT;";
+    private static final String DATABASE_ALTER_TEAM_1 = "ALTER TABLE "
+            + TABLE_USER + " ADD COLUMN " + KEY_url + " TEXT;";
+
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_USER + "("
-                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_EMAIL + " TEXT UNIQUE," + KEY_ROLL + " TEXT,"
-                + KEY_HOSTEL + " TEXT," + KEY_GENDER + " TEXT," + KEY_PHONE + " TEXT," +
-                KEY_BRANCH + " TEXT," + KEY_YEAR + " TEXT" + ")";
+
         db.execSQL(CREATE_LOGIN_TABLE);
+        db.execSQL(DATABASE_ALTER_TEAM_1);
+        db.execSQL(DATABASE_ALTER_TEAM_2);
+        Log.e(TAG,"altered");
 
         Log.d(TAG, "Database tables created");
     }
@@ -56,8 +71,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
-
-        // Create tables again
+        //Log.e(TAG,"OnUpgrade");
         onCreate(db);
     }
 
@@ -65,7 +79,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
      * Storing user details in database
      * */
     public void addUser(int id,String name, String email, String roll
-            , String hostel,String gender, String phone,  String branch, String year) {
+            , String hostel,String gender, String phone,  String branch, String year,String batch_code,String url) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -78,12 +92,15 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(KEY_PHONE, phone); // Phone
         values.put(KEY_BRANCH, branch); // Branch
         values.put(KEY_YEAR, year); // Year
+        values.put(KEY_BATCH_CODE,batch_code); //batch
+        values.put(KEY_url,url);//photo_url
 
         // Inserting Row
         long Sid = db.insert(TABLE_USER, null, values);
         db.close(); // Closing database connection
 
         Log.d(TAG, "New user inserted into sqlite: " + Sid);
+
     }
 
     /**
@@ -95,6 +112,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
+//        Log.e(TAG,cursor.getString(10)+" " +cursor.getString(9)+" "+cursor.getString(1));
         // Move to first row
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {
@@ -107,6 +125,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             user.put("phone", cursor.getString(6));
             user.put("branch", cursor.getString(7));
             user.put("year", cursor.getString(8));
+            user.put("batch_code",cursor.getString(cursor.getColumnIndex(KEY_BATCH_CODE)));
+            user.put("url",cursor.getString(cursor.getColumnIndex(KEY_url)));
         }
         cursor.close();
         db.close();

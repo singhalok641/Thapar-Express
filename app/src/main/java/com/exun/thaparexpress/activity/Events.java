@@ -2,13 +2,10 @@ package com.exun.thaparexpress.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -104,8 +101,18 @@ public class Events extends AppCompatActivity implements FragmentDrawer.Fragment
             case 5:
                 Toast.makeText(getApplicationContext(), "Coming soon :D", Toast.LENGTH_SHORT).show();
                 break;
+            //case 6:
+            //    i.putExtra("selectionId",6);
+            //    startActivity(i);
+            //   finish();
+            //    break;
             case 6:
                 i.putExtra("selectionId",6);
+                startActivity(i);
+                finish();
+                break;
+            case 7:
+                i.putExtra("selectionId",7);
                 startActivity(i);
                 finish();
                 break;
