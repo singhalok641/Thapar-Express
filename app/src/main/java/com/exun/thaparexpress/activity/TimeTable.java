@@ -14,6 +14,8 @@ import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.adapter.SlidingTabLayout;
 import com.exun.thaparexpress.adapter.ViewPagerAdapterTimeTable;
 
+import java.util.Calendar;
+
 /**
  * Created by root on 8/15/16.
  */
@@ -27,6 +29,8 @@ public class TimeTable extends AppCompatActivity implements FragmentDrawer.Fragm
     SlidingTabLayout tabs;
     CharSequence Titles[] = {"Monday", "Tuesday", "Wednesday","Thursday","Friday"};
     int Numboftabs = 5;
+
+     int pos;
 
      String branch;
      private SQLiteHandler database;
@@ -48,6 +52,48 @@ public class TimeTable extends AppCompatActivity implements FragmentDrawer.Fragm
             startActivity(i);
         }
 
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+        switch (day) {
+            case Calendar.SUNDAY:
+                pos=0;
+                break;
+                // Current day is Sunday
+
+            case Calendar.MONDAY:
+                // Current day is Monday
+                pos=0;
+                break;
+
+            case Calendar.TUESDAY:
+                // etc.
+                pos=1;
+                break;
+
+
+            case Calendar.WEDNESDAY:
+                // etc.
+                pos=2;
+                break;
+
+            case Calendar.THURSDAY:
+                // etc.
+                pos=3;
+                break;
+
+            case Calendar.FRIDAY:
+                // etc.
+                pos=4;
+                break;
+
+            case Calendar.SATURDAY:
+                // etc.
+                pos=0;
+                break;
+
+
+        }
       //   Creating The Toolbar and setting it as the Toolbar for the activity
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -68,6 +114,9 @@ public class TimeTable extends AppCompatActivity implements FragmentDrawer.Fragm
         pager = (ViewPager) findViewById(R.id.pagertimetable);
         pager.setAdapter(adapter);
         pager.setOffscreenPageLimit(2);
+
+        //function to set the current day timetable tab
+        pager.setCurrentItem(pos);
 
         // Assiging the Sliding Tab Layout View
         tabs = (SlidingTabLayout) findViewById(R.id.tabstimetable);

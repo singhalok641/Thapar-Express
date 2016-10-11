@@ -8,7 +8,7 @@ android {
         applicationId "com.exun.thaparexpress"
         minSdkVersion 19
         targetSdkVersion 22
-        versionCode 12
+        versionCode 14
         versionName "0.3"
     }
     buildTypes {

@@ -9,17 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.exun.thaparexpress.Helper.SQLiteHandler;
 import com.exun.thaparexpress.R;
-import com.exun.thaparexpress.adapter.AppConfig;
 import com.exun.thaparexpress.adapter.AppController;
 
 import org.json.JSONException;
@@ -31,24 +30,15 @@ import java.util.Map;
 /**
  * Created by root on 10/7/16.
  */
-
-
-
 public class Feedback extends Fragment {
 
     RadioGroup inputFeedback;
-    RadioButton radioTypeButton;
     Button _submitFeedback;
     EditText edit_feedback;
-    String feedback_type;
     private SQLiteHandler db;
-
     String id,roll,name,email,phone;
-
     private ProgressDialog progressDialog;
-
-
-    int SelectID;
+    final String url ="http://thapar.brinjal.in/api/v1/feedback";
 
     // Log tag
     private static final String TAG = "Feedback";
@@ -60,12 +50,11 @@ public class Feedback extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_feedback, container, false);
         inputFeedback = (RadioGroup) rootView.findViewById(R.id.input_feedback);
         edit_feedback = (EditText) rootView.findViewById(R.id.feedback_box);
+        _submitFeedback=(Button) rootView.findViewById(R.id.btn_login);
+        inputFeedback.check(R.id.suggestion);
         selection = null;
 
-
         db = new SQLiteHandler(getActivity().getApplicationContext());
-
-        id=db.getUserDetails().get("id");
         roll=db.getUserDetails().get("roll");
         name=db.getUserDetails().get("name");
         phone=db.getUserDetails().get("phone");
@@ -88,21 +77,28 @@ public class Feedback extends Fragment {
             }
         });
 
-        Log.e(TAG,selection);
-
     _submitFeedback.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             String feedback= edit_feedback.getText().toString();
 
-            submit(roll,id,name,email,phone,selection,feedback);
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("roll", roll);
+            params.put("name", name);
+            params.put("email", email);
+            params.put("type", selection);
+            params.put("suggestions",feedback);
+            params.put("mobile", phone);
 
+            submit(params);
         }
     });
+
     return rootView;
     }
 
-    private void submit(final String roll,final String id,final String name,final String email,final String phone,final String selection,final String feedback) {
+    private void submit(Map<String, String> params) {
+
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setCancelable(false);
         progressDialog.setIndeterminate(true);
@@ -110,80 +106,45 @@ public class Feedback extends Fragment {
         progressDialog.show();
 
 
-        StringRequest strxReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_ADD_STORE_ITEM, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d(TAG, "Login Response: " + response.toString());
-                hideDialog();
 
-                try {
-                    JSONObject jObj = new JSONObject(response);
-                    boolean error = jObj.getBoolean("error");
 
-                    // Check for error node in json
-                    if (!error) {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        hideDialog();
+                        Log.d("Response: Description ", response.toString());
 
-                        Log.d(TAG, "Saving data");
-                        String message = jObj.getString("message");
-                        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+                        try {
+                            String status = response.getString("status");
+                            String message = response.getString("message");
 
-                    } else {
+                            Log.d(TAG, "onResponse: " + message);
+                            if (status.equals("success")) {
 
-                        // Error in login. Get the error message
-                        String errorMsg = jObj.getString("message");
-                        Toast.makeText(getActivity().getApplicationContext(),
-                                "Login Failed! :/", Toast.LENGTH_LONG).show();
-                        Log.e(TAG, errorMsg);
+                                Toast.makeText(getActivity(), "Thank you for your feedback :)", Toast.LENGTH_SHORT).show();
 
-                        //login = false;
+                            }
 
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getActivity(), "Connection failed :/", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                } catch (JSONException e) {
-                    // JSON error
-                    Toast.makeText(getActivity().getApplicationContext(),
-                            "Login Failed! :/", Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        hideDialog();
+                        Log.d("Error.Response", error.toString());
+                        Toast.makeText(getActivity(), "Connection failed :/", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-                }
-
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Login Error: " + error.getMessage());
-                Toast.makeText(getActivity().getApplicationContext(),
-                        "Login error! Something went wrong.", Toast.LENGTH_LONG).show();
-                hideDialog();
-            }
-        })
-
-        {
-            @Override
-            protected Map<String, String> getParams() {
-                // Posting parameters to feedback url
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("tag", "login");
-                params.put("id", id);
-                params.put("name", name);
-                params.put("roll", roll);
-                params.put("email", email);
-                params.put("type", selection);
-                params.put("suggestions",feedback);
-                params.put("mobile", phone);
-
-                return params;
-            }
-
-        };
-
-        // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(strxReq, TAG);
-
-
-
-        }
+        request.setRetryPolicy(new DefaultRetryPolicy(10000, 3, 2));
+        AppController.getInstance().addToRequestQueue(request);
+    }
 
     private void hideDialog() {
         if (progressDialog != null) {
