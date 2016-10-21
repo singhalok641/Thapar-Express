@@ -77,19 +77,19 @@ public class Societies extends AppCompatActivity implements FragmentDrawer.Fragm
         Intent i = new Intent(Societies.this,MainActivity.class);
         switch (position) {
             case 0:
-                i.putExtra("selectionId",0);
+                i.putExtra("selectionId", 0);
                 startActivity(i);
                 finish();
                 break;
             case 1:
                 break;
             case 2:
-                i = new Intent(Societies.this,Events.class);
+                i = new Intent(Societies.this, Events.class);
                 startActivity(i);
                 finish();
                 break;
             case 3:
-                i.putExtra("selectionId",3);
+                i.putExtra("selectionId", 3);
                 startActivity(i);
                 finish();
                 break;
@@ -99,25 +99,35 @@ public class Societies extends AppCompatActivity implements FragmentDrawer.Fragm
                 finish();
                 break;
             case 5:
-                Toast.makeText(getApplicationContext(), "Coming soon :D", Toast.LENGTH_SHORT).show();
+                i.putExtra("selectionId", 5);
+                startActivity(i);
+                finish();
                 break;
-            //case 6:
-            //    i.putExtra("selectionId",6);
-            //    startActivity(i);
-            //    finish();
-            //    break;
             case 6:
-                i.putExtra("selectionId",6);
+                i.putExtra("selectionId", 6);
                 startActivity(i);
                 finish();
                 break;
             case 7:
-                i.putExtra("selectionId",7);
+                Toast.makeText(getApplicationContext(), "Coming soon :D", Toast.LENGTH_SHORT).show();
+                break;
+            case 8:
+                i.putExtra("selectionId", 8);
+                startActivity(i);
+                finish();
+                break;
+            case 9:
+                i.putExtra("selectionId", 9);
+                startActivity(i);
+                finish();
+                break;
+            case 10:
+                i.putExtra("selectionId", 10);
                 startActivity(i);
                 finish();
                 break;
             default:
-                i.putExtra("selectionId",0);
+                i.putExtra("selectionId", 0);
                 startActivity(i);
                 finish();
                 break;

@@ -107,8 +107,8 @@ public class TimeTable extends AppCompatActivity implements FragmentDrawer.Fragm
 
 
 
-        // Creating The ViewPagerAdapterSocieties and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter = new ViewPagerAdapterTimeTable(getSupportFragmentManager(), Titles, Numboftabs,branch);
+        // Creating The ViewPagerAdapterTimetable and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
+        adapter = new ViewPagerAdapterTimeTable(getSupportFragmentManager(), Titles, Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pagertimetable);
@@ -169,7 +169,9 @@ public class TimeTable extends AppCompatActivity implements FragmentDrawer.Fragm
                 finish();
                 break;
             case 5:
-                Toast.makeText(getApplicationContext(), "Coming soon :D", Toast.LENGTH_SHORT).show();
+                i.putExtra("selectionId",5);
+                startActivity(i);
+                finish();
                 break;
             case 6:
                 i.putExtra("selectionId",6);
@@ -177,7 +179,20 @@ public class TimeTable extends AppCompatActivity implements FragmentDrawer.Fragm
                 finish();
                 break;
             case 7:
-                i.putExtra("selectionId",7);
+                Toast.makeText(getApplicationContext(), "Coming soon :D", Toast.LENGTH_SHORT).show();
+                break;
+            case 8:
+                i.putExtra("selectionId",8);
+                startActivity(i);
+                finish();
+                break;
+            case 9:
+                i.putExtra("selectionId",9);
+                startActivity(i);
+                finish();
+                break;
+            case 10:
+                i.putExtra("selectionId",10);
                 startActivity(i);
                 finish();
                 break;
