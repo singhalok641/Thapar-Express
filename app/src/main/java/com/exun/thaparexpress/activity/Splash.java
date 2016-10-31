@@ -1,29 +1,47 @@
 package com.exun.thaparexpress.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
+
+import com.exun.thaparexpress.Helper.SessionManager;
 
 /**
  * Created by n00b on 11/25/2015.
  */
 public class Splash extends AppCompatActivity {
 
+    private SessionManager session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Session manager
+        session = new SessionManager(getApplicationContext());
+
+
         if (isOnline()){
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, SignUp.class);
             startActivity(intent);
             finish();
         }
-        else {
-         /*   new AlertDialog.Builder(Splash.this)
+        else if (session.isLoggedIn()) {
+            // User is already logged in. Take him to main activity
+            Intent intent =new Intent(this,TimeTable.class);
+            startActivity(intent);
+            finish();
+            Toast.makeText(Splash.this, "No Internet Connection :/", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+           new AlertDialog.Builder(Splash.this)
                     .setTitle("No Internet connection!")
                     .setMessage("Please check your connection.")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -33,12 +51,9 @@ public class Splash extends AppCompatActivity {
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
-                    */
 
-            Intent intent =new Intent(this,TimeTable.class);
-            startActivity(intent);
-            finish();
-            Toast.makeText(Splash.this, "No Internet Connection :/", Toast.LENGTH_SHORT).show();
+
+
         }
 
     }

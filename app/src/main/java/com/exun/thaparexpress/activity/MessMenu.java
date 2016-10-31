@@ -12,54 +12,47 @@ import android.widget.Toast;
 import com.exun.thaparexpress.Helper.SQLiteHandler;
 import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.adapter.SlidingTabLayout;
-import com.exun.thaparexpress.adapter.ViewPagerAdapterTimeTable;
+import com.exun.thaparexpress.adapter.ViewPagerAdapterMess;
 
 import java.util.Calendar;
 
 /**
- * Created by root on 8/15/16.
+ * Created by root on 10/11/16.
  */
-public class TimeTable extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener
- {
+public class MessMenu extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener
+{
 
     Toolbar toolbar;
     private FragmentDrawer drawerFragment;
     ViewPager pager;
-    ViewPagerAdapterTimeTable adapter;
+    ViewPagerAdapterMess adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[] = {"Monday", "Tuesday", "Wednesday","Thursday","Friday"};
-    int Numboftabs = 5;
+    CharSequence Titles[] = {"Monday", "Tuesday", "Wednesday","Thursday","Friday","Saturday","Sunday"};
+    int Numboftabs = 7;
 
-     int pos;
+    int pos;
+    String branch;
+    private SQLiteHandler database;
+    public String hostel;
 
-     String branch;
-     private SQLiteHandler database;
-     public String year;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timetable);
+        setContentView(R.layout.activity_mess);
 
         //SQLiteHandler
         database = new SQLiteHandler(this.getApplicationContext());
-        year=database.getUserDetails().get("year");
-
-        if(year.equals("2018"))
-        {
-            Intent i  =new Intent(TimeTable.this,MainActivity.class);
-            Toast.makeText(TimeTable.this, "Coming Soon :)", Toast.LENGTH_SHORT).show();
-            startActivity(i);
-        }
+        hostel=database.getUserDetails().get("hostel");
 
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
 
         switch (day) {
             case Calendar.SUNDAY:
-                pos=0;
+                pos=6;
                 break;
-                // Current day is Sunday
+            // Current day is Sunday
 
             case Calendar.MONDAY:
                 // Current day is Monday
@@ -89,29 +82,26 @@ public class TimeTable extends AppCompatActivity implements FragmentDrawer.Fragm
 
             case Calendar.SATURDAY:
                 // etc.
-                pos=0;
+                pos=5;
                 break;
-
-
         }
-      //   Creating The Toolbar and setting it as the Toolbar for the activity
+
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         drawerFragment = (FragmentDrawer)
-        getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+                getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
         drawerFragment.setDrawerListener(this);
 
-
-
-        // Creating The ViewPagerAdapterTimetable and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter = new ViewPagerAdapterTimeTable(getSupportFragmentManager(), Titles, Numboftabs);
+// Creating The ViewPagerAdapterTimetable and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
+        adapter = new ViewPagerAdapterMess(getSupportFragmentManager(), Titles, Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
-        pager = (ViewPager) findViewById(R.id.pagertimetable);
+        pager = (ViewPager) findViewById(R.id.pager_mess);
         pager.setAdapter(adapter);
         pager.setOffscreenPageLimit(2);
 
@@ -119,7 +109,7 @@ public class TimeTable extends AppCompatActivity implements FragmentDrawer.Fragm
         pager.setCurrentItem(pos);
 
         // Assiging the Sliding Tab Layout View
-        tabs = (SlidingTabLayout) findViewById(R.id.tabstimetable);
+        tabs = (SlidingTabLayout) findViewById(R.id.tabs_mess);
         tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
 
         // Setting Custom Color for the Scroll bar indicator of the Tab View
@@ -134,16 +124,20 @@ public class TimeTable extends AppCompatActivity implements FragmentDrawer.Fragm
         tabs.setViewPager(pager);
 
 
+
     }
 
 
     @Override
     public void onDrawerItemSelected(View view, int position) {
+
         displayView(position);
+
+        
     }
 
     private void displayView(int position) {
-        Intent i = new Intent(TimeTable.this,MainActivity.class);
+        Intent i = new Intent(MessMenu.this,MainActivity.class);
         switch (position) {
             case 0:
                 i.putExtra("selectionId",0);
@@ -151,22 +145,22 @@ public class TimeTable extends AppCompatActivity implements FragmentDrawer.Fragm
                 finish();
                 break;
             case 1:
-                i = new Intent(TimeTable.this,Societies.class);
+                i = new Intent(MessMenu.this,Societies.class);
                 startActivity(i);
                 finish();
                 break;
             case 2:
-                i = new Intent(TimeTable.this,Events.class);
+                i = new Intent(MessMenu.this,Events.class);
                 startActivity(i);
                 finish();
                 break;
             case 3:
-
-                break;
-            case 4:
-                i.putExtra("selectionId", 4);
+                i.putExtra("selectionId", 3);
                 startActivity(i);
                 finish();
+                break;
+            case 4:
+
                 break;
             case 5:
                 i.putExtra("selectionId",5);
@@ -204,14 +198,12 @@ public class TimeTable extends AppCompatActivity implements FragmentDrawer.Fragm
         }
 
     }
-
     @Override
     public void onBackPressed() {
 
-        Intent i = new Intent(TimeTable.this,MainActivity.class);
+        Intent i = new Intent(MessMenu.this,MainActivity.class);
         i.putExtra("selectionId",0);
         startActivity(i);
         finish();
     }
-
 }

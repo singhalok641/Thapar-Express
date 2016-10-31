@@ -99,20 +99,30 @@ public class Events extends AppCompatActivity implements FragmentDrawer.Fragment
                 finish();
                 break;
             case 5:
-                Toast.makeText(getApplicationContext(), "Coming soon :D", Toast.LENGTH_SHORT).show();
+                i.putExtra("selectionId",5);
+                startActivity(i);
+                finish();
                 break;
-            //case 6:
-            //    i.putExtra("selectionId",6);
-            //    startActivity(i);
-            //   finish();
-            //    break;
             case 6:
                 i.putExtra("selectionId",6);
                 startActivity(i);
                 finish();
                 break;
             case 7:
-                i.putExtra("selectionId",7);
+                Toast.makeText(getApplicationContext(), "Coming soon :D", Toast.LENGTH_SHORT).show();
+                break;
+            case 8:
+                i.putExtra("selectionId",8);
+                startActivity(i);
+                finish();
+                break;
+            case 9:
+                i.putExtra("selectionId",9);
+                startActivity(i);
+                finish();
+                break;
+            case 10:
+                i.putExtra("selectionId",10);
                 startActivity(i);
                 finish();
                 break;

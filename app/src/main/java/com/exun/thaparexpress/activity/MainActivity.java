@@ -12,10 +12,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
+import com.exun.thaparexpress.Helper.SQLiteHandler;
 import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.activity.fragments.About;
 import com.exun.thaparexpress.activity.fragments.Feedback;
 import com.exun.thaparexpress.activity.fragments.Home;
+import com.exun.thaparexpress.activity.fragments.Syllabus;
 import com.exun.thaparexpress.activity.fragments.ThaparLogs;
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
@@ -27,11 +29,18 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     boolean doubleBackToExitPressedOnce;
     private int select = 0;
     String branch;
+    private SQLiteHandler database;
+    String year;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //SQLiteHandler
+        database = new SQLiteHandler(this.getApplicationContext());
+        year=database.getUserDetails().get("year");
+
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -81,19 +90,41 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 startActivity(i);
                 finish();
                 break;
+
             case 3:
-                //Log.e("TimeTable Activity", TAG);
-                Intent intent = new Intent(MainActivity.this,TimeTable.class);
-                startActivity(intent);
-                intent.putExtra("Branch",branch);
-                //Log.e("Check", TAG);
+                if(year.equals("2018") || year.equals("2017"))
+                {
+                    Toast.makeText(MainActivity.this, "Coming Soon :D", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                else {
+                    //Log.e("TimeTable Activity", TAG);
+                    i = new Intent(MainActivity.this, TimeTable.class);
+                    startActivity(i);
+                    i.putExtra("Branch", branch);
+                    //Log.e("Check", TAG);
+                    finish();
+                    break;
+                }
+
+            case 4:
+                i = new Intent(MainActivity.this,MessMenu.class);
+                startActivity(i);
                 finish();
                 break;
-            case 4:
+
+            case 5:
                 fragment = new ThaparLogs();
                 title = "ThaparLogs";
                 break;
-            case 5:
+
+            case 6:
+                i = new Intent(MainActivity.this,Teachers.class);
+                startActivity(i);
+                finish();
+                break;
+
+            case 7:
                 //fragment = new Store();
                 //title = "Store";
                 Toast.makeText(MainActivity.this, "Coming Soon :D", Toast.LENGTH_SHORT).show();
@@ -102,17 +133,19 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             //    Toast.makeText(getApplicationContext(),"Coming soon :D",Toast.LENGTH_SHORT).show();
             //    break;
 
-            case 6:
+            case 8:
+                fragment = new Syllabus();
+                title = "Syllabus";
+                break;
+
+            case 9:
                 fragment = new Feedback();
                 title = "Feedback";
                 break;
-            case 7:
+            case 10:
                 fragment = new About();
                 title = "About";
                 break;
-
-
-
             default:
                 break;
         }

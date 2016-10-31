@@ -5,6 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="drawer_close">Close</string>
     <string name="drawer_open">Open</string>
+    <string name="facebook_app_id">754290661377097</string>
 
     <integer-array name="colors">
         <item>@color/color1</item>
@@ -20,9 +21,11 @@
         <item>Societies</item>
         <item>Events</item>
         <item>TimeTable</item>
+        <item>Mess Menu</item>
         <item>Thapar Logs</item>
+        <item>Teachers</item>
         <item>Store</item>
-          <!-- <item>Syllabus</item> -->
+        <item>Syllabus</item>
         <item>Feedback</item>
            <item>About</item>
        </string-array>
@@ -102,6 +105,7 @@
        <string name="title_activity_fragment_holder">Fragment_holder</string>
        <string name="gmann">Gurdas Maan is an Indian singer, songwriter, choreographer, and actor. He is considered one of the most notable figures in the world of Punjabi music. He was born in Giddarbaha village of the Indian state of Punjab and gained national attention in 1980 with the song "Dil Da Mamla Hai." Since then, he has gone on to record over 34 albums and has written over 305 songs. In 2013 he announced the launch of his YouTube channel to stay connected with his fans via video blogs and old as well as new music videos.</string>
        <string name="title_activity_event_details">EventDetails</string>
+        <string name="action_edit">Edit description</string>
 
    </resources>
 
