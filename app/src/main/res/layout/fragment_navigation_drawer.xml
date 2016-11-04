@@ -15,14 +15,14 @@
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_marginLeft="15dp"
             android:src="@drawable/ic_profile"
             app:border_color="#FF000000"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="39dp"
-            android:layout_alignBottom="@+id/roll" />
+            android:layout_marginStart="22dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
             android:textColor="#fff"
             android:gravity="left"
             android:paddingBottom="4dp"
-            android:paddingTop="75dp"
+            android:paddingTop="65dp"
             android:id="@+id/name"
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/profile_image" />
@@ -48,6 +48,22 @@
             android:id="@+id/roll"
             android:layout_below="@+id/name"
             android:layout_alignStart="@+id/name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:paddingLeft="5dp"
+            android:text="See Profile"
+            android:textIsSelectable="true"
+            android:elegantTextHeight="true"
+            android:gravity="left"
+            android:textColor="#fff"
+            android:id="@+id/see_profile"
+            android:layout_below="@+id/roll"
+            android:layout_alignStart="@+id/profile_image"
+            android:textStyle="bold" />
+
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView

@@ -30,7 +30,6 @@
            <item>About</item>
        </string-array>
 
-
        <string-array name="spinner_cat">
            <item>Book</item>
            <item>Cycle</item>
@@ -39,6 +38,13 @@
            <item>Electronics</item>
            <item>Drafter</item>
        </string-array>
+
+    <string-array name="university">
+        <item>Select University</item>
+        <item>Thapar University</item>
+        <item>PEC</item>
+        <item>IIT Delhi</item>
+    </string-array>
 
     <string-array name="year">
         <item>Select year</item>

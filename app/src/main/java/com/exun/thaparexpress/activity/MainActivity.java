@@ -17,7 +17,6 @@ import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.activity.fragments.About;
 import com.exun.thaparexpress.activity.fragments.Feedback;
 import com.exun.thaparexpress.activity.fragments.Home;
-import com.exun.thaparexpress.activity.fragments.Syllabus;
 import com.exun.thaparexpress.activity.fragments.ThaparLogs;
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
@@ -108,9 +107,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 }
 
             case 4:
-                i = new Intent(MainActivity.this,MessMenu.class);
-                startActivity(i);
-                finish();
+                Toast.makeText(MainActivity.this, "Coming Soon :D", Toast.LENGTH_SHORT).show();
+                //i = new Intent(MainActivity.this,MessMenu.class);
+                //startActivity(i);
+                //finish();
                 break;
 
             case 5:
@@ -119,9 +119,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 break;
 
             case 6:
-                i = new Intent(MainActivity.this,Teachers.class);
-                startActivity(i);
-                finish();
+                Toast.makeText(MainActivity.this, "Coming Soon :D", Toast.LENGTH_SHORT).show();
+                //i = new Intent(MainActivity.this,Teachers.class);
+                //startActivity(i);
+                //finish();
                 break;
 
             case 7:
@@ -134,8 +135,9 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             //    break;
 
             case 8:
-                fragment = new Syllabus();
-                title = "Syllabus";
+                Toast.makeText(MainActivity.this, "Coming Soon :D", Toast.LENGTH_SHORT).show();
+                //fragment = new Syllabus();
+                //title = "Syllabus";
                 break;
 
             case 9:

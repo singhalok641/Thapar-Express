@@ -1,6 +1,7 @@
 package com.exun.thaparexpress.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -35,7 +36,7 @@ public class FragmentDrawer extends Fragment {
     private static String TAG = FragmentDrawer.class.getSimpleName();
 
     private RecyclerView recyclerView;
-    private TextView name, roll;
+    private TextView name, roll,see_profile;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private NavigationDrawerAdapter adapter;
@@ -91,7 +92,24 @@ public class FragmentDrawer extends Fragment {
         name = (TextView) layout.findViewById(R.id.name);
         roll = (TextView) layout.findViewById(R.id.roll);
         _profile=(CircleImageView)layout.findViewById(R.id.profile_image);
+        see_profile=(TextView)layout.findViewById(R.id.see_profile);
 
+        see_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(),ProfileActivity.class);
+                startActivity(i);
+
+            }
+        });
+
+        _profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(),ProfileActivity.class);
+                startActivity(i);
+            }
+        });
 
         db = new SQLiteHandler(getActivity().getApplicationContext());
         sname = db.getUserDetails().get("name");

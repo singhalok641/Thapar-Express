@@ -205,7 +205,7 @@ public class SignUp extends AppCompatActivity implements
 
     @Override
     public void onBackPressed() {
-        // disable going back to the MainActivity
+        // disable going bg_splash to the MainActivity
         moveTaskToBack(true);
 
     }

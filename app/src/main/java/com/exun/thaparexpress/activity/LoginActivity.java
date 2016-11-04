@@ -190,7 +190,7 @@ public class LoginActivity extends AppCompatActivity
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Login Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(),
-                        "Login error! Something went wrong.", Toast.LENGTH_LONG).show();
+                        "Login error! Something went wrong.", Toast.LENGTH_SHORT).show();
                 hideDialog();
             }
         }) {
@@ -228,6 +228,7 @@ public class LoginActivity extends AppCompatActivity
     }
 
     private void hideDialog() {
+        Log.e(TAG,"hide");
         if (progressDialog.isShowing())
             progressDialog.dismiss();
     }
@@ -236,7 +237,7 @@ public class LoginActivity extends AppCompatActivity
     public void onBackPressed() {
         Intent i =new Intent(LoginActivity.this,SignUp.class);
         startActivity(i);
-        // disable going back to the MainActivity
+        // disable going bg_splash to the MainActivity
         //moveTaskToBack(true);
     }
 

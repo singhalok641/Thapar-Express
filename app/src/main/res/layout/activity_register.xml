@@ -86,6 +86,17 @@
                     android:hint="Password"/>
             </android.support.design.widget.TextInputLayout>
 
+            <!--University Label -->
+            <TextView android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#e4e4e4"
+                android:text="University"
+                android:layout_marginTop="15dp"/>
+            <Spinner
+                android:id="@+id/University"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
             <!-- Gender Label -->
             <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -111,8 +122,6 @@
                     android:text="Female"
                     android:id="@+id/female"/>
             </RadioGroup>
-
-
 
             <!-- Hostel male Label -->
             <LinearLayout
@@ -244,6 +253,8 @@
 
                 </RadioGroup>
             </LinearLayout>
+
+
 
             <!--Year Label -->
             <TextView android:layout_width="fill_parent"

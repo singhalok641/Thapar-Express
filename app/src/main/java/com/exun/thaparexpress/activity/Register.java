@@ -41,13 +41,13 @@ public class Register extends AppCompatActivity  {
 
     EditText _nameText,_emailText, _passwordText, inputPhone, inputRoll;
     RadioGroup inputGender, inputHosteMale, inputHostelFemale;
-    Spinner spinner,spinner_2018_branch,spinner_2018_batch,spinner_2019_branch,spinner_2019_batch,spinner_2020_branch,spinner_2020_batch_1,spinner_2020_batch_2;
+    Spinner spinner,spinner_university,spinner_2018_branch,spinner_2018_batch,spinner_2019_branch,spinner_2019_batch,spinner_2020_branch,spinner_2020_batch_1,spinner_2020_batch_2;
     private ProgressDialog pDialog;
     Button _signupButton;
     TextView _loginLink;
     AutoCompleteTextView regBranch;
     AutoCompleteTextView regCourse;
-    String gender=null,hostel=null,selection=null,year=null,branch=null,batch_1=null,batch_2=null,batch_code=null;
+    String gender=null,hostel=null,selection=null,year=null,branch=null,batch_1=null,batch_2=null,batch_code=null,university=null;
     RadioButton radioSexButton,radioHostelButton;
     int selectHID;
     private SessionManager session;
@@ -84,10 +84,19 @@ public class Register extends AppCompatActivity  {
         year_19=(LinearLayout) findViewById(R.id.year_19);
         year_20=(LinearLayout) findViewById(R.id.year_20);
 
+        //Spinner for University
+        spinner_university = (Spinner) findViewById(R.id.University);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> university_adapter = ArrayAdapter.createFromResource(this,
+                R.array.university, R.layout.spinner_item);
+        // Specify the layout to use when the list of choices appears
+        university_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner_university.setAdapter(university_adapter);
+
 
         //Spinner for graduation year
         spinner = (Spinner) findViewById(R.id.year);
-
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> year_adapter = ArrayAdapter.createFromResource(this,
                 R.array.year, R.layout.spinner_item);
@@ -225,6 +234,31 @@ public class Register extends AppCompatActivity  {
             }
         });
 
+        spinner_university.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+                switch(position)
+                {
+                    case 0:
+                        university=parent.getItemAtPosition(position).toString();;
+                    case 1:
+                        university = parent.getItemAtPosition(position).toString();
+                    case 2:
+                        university = parent.getItemAtPosition(position).toString();
+                    case 3:
+                        university= parent.getItemAtPosition(position).toString();
+
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         //ItemSelectedListener for
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -283,7 +317,6 @@ public class Register extends AppCompatActivity  {
                         branch = parent.getItemAtPosition(position).toString();
                     case 8:
                         branch = parent.getItemAtPosition(position).toString();
-
                     case 9:
                         branch = parent.getItemAtPosition(position).toString();
                     case 10:
@@ -338,7 +371,6 @@ public class Register extends AppCompatActivity  {
                         branch = parent.getItemAtPosition(position).toString();
                     case 8:
                         branch = parent.getItemAtPosition(position).toString();
-
                     case 9:
                         branch = parent.getItemAtPosition(position).toString();
                     case 10:
