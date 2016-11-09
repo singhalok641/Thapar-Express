@@ -22,4 +22,5 @@
     <color name="warning">#f7c491</color>
     <color name="danger">#ce807e</color>
     <color name="lightPrimary">#3b4a59</color>
+    <color name="GrayLight">#d3d3d3</color>
 </resources>

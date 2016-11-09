@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.exun.thaparexpress.Helper.SessionManager;
 import com.exun.thaparexpress.R;
-import com.exun.thaparexpress.adapter.AppConfig;
 import com.github.ybq.android.spinkit.SpinKitView;
 
 /**
@@ -35,9 +34,9 @@ public class Splash extends AppCompatActivity {
 
         session = new SessionManager(getApplicationContext());
 
-        pm = this.getPackageManager();
-        spinKitView = (SpinKitView) findViewById(R.id.spin_kit);
-        spinKitView.setIndeterminateDrawable(AppConfig.getLoadingDrawable(this,0,-1));
+        //pm = this.getPackageManager();
+        //spinKitView = (SpinKitView) findViewById(R.id.spin_kit);
+        //spinKitView.setIndeterminateDrawable(AppConfig.getLoadingDrawable(this,0,-1));
 
         //new BackgroundTasks().execute();
 
