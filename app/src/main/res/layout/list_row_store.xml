@@ -43,13 +43,14 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="18dp"
                 android:text="Item"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/textColorPrimary"
                 android:textIsSelectable="false"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:typeface="normal"
                 android:layout_above="@+id/condition"
-                android:layout_toEndOf="@+id/itemImageLayout" />
+                android:layout_toEndOf="@+id/itemImageLayout"
+                android:layout_toRightOf="@+id/itemImageLayout" />
 
             <TextView
                 android:id="@+id/condition"

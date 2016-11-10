@@ -61,7 +61,7 @@
                 android:layout_below="@id/eventBackground"
                 android:layout_marginLeft="15dp"
                 android:text="Event Title"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/textColorPrimary"
                 android:textIsSelectable="false"
                 android:textSize="17sp"
                 android:textStyle="bold"

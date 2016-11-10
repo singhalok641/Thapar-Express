@@ -41,11 +41,12 @@
                 android:layout_toEndOf="@+id/imageView2"
                 android:paddingLeft="18dp"
                 android:text="Blog Title"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/textColorPrimary"
                 android:textIsSelectable="false"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:typeface="normal" />
+                android:typeface="normal"
+                android:layout_toRightOf="@+id/imageView2" />
 
             <TextView
                 android:id="@+id/blogDate"

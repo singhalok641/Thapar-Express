@@ -12,7 +12,8 @@
         android:src="@drawable/ic_bell_white_24dp"
         android:padding="10dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
 
     <TextView
         android:id="@+id/title"
@@ -20,13 +21,14 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed"
         android:text="Heading"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/textColorPrimary"
         android:textStyle="bold"
         android:textSize="18sp"
         android:paddingLeft="10dp"
         android:typeface="normal"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/notif" />
+        android:layout_toEndOf="@+id/notif"
+        android:layout_toRightOf="@+id/notif" />
 
     <TextView
         android:id="@+id/message"
@@ -39,7 +41,8 @@
         android:textStyle="italic"
         android:typeface="normal"
         android:layout_below="@+id/title"
-        android:layout_alignStart="@+id/title" />
+        android:layout_alignStart="@+id/title"
+        android:layout_alignLeft="@+id/title" />
 
 
 

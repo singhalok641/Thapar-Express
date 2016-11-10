@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#fff"
+    android:background="#FFFFFF"
     android:fitsSystemWindows="true">
 
     <LinearLayout
@@ -116,14 +116,14 @@
                     android:layout_width="wrap_content"
                     android:textColor="@color/textColorPrimary"
                     android:layout_height="wrap_content"
-                    android:shadowColor="#fff"
+                    android:shadowColor="@color/textColorPrimary"
                     android:text="Male"
                     android:id="@+id/male"/>
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:textColor="@color/textColorPrimary"
                     android:layout_height="wrap_content"
-                    android:shadowColor="#fff"
+                    android:shadowColor="@color/textColorPrimary"
                     android:text="Female"
                     android:id="@+id/female"/>
             </RadioGroup>
