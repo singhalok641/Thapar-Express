@@ -2,15 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="#FFFFFF"
     android:weightSum="1">
 
 
     <ImageView
-        android:layout_width="162dp"
+        android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_marginTop="60dp"
-        android:src="@drawable/tx_logo"
+        android:src="@drawable/cb_logo"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.11" />
 
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:textColor="#e4e4e4"
+        android:textColor="@color/textColorPrimary"
         android:textIsSelectable="false"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -33,7 +33,7 @@
         android:gravity="center_horizontal"
         android:textIsSelectable="false"
         android:textSize="18sp"
-        android:textColor="#e4e4e4"
+        android:textColor="@color/textColorPrimary"
         android:typeface="normal"
         android:layout_marginTop="30dp"
         android:text="Send your feedback or bugs at"/>
@@ -50,5 +50,5 @@
         android:autoLink="email"
         android:typeface="normal"
         android:layout_marginTop="10dp"
-        android:text="hello@thaparexpress.com"/>
+        android:text="hello@campusbox.org"/>
 </LinearLayout>

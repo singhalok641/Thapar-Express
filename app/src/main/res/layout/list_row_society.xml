@@ -22,8 +22,9 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:text="Yolo"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/textColorPrimary"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/thumbnail" />
+        android:layout_toEndOf="@+id/thumbnail"
+        android:layout_toRightOf="@+id/thumbnail" />
 
 </RelativeLayout>

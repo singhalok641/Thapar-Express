@@ -1,4 +1,4 @@
-package com.exun.thaparexpress.activity;
+package com.exun.thaparexpress.activity.authenticate;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -18,6 +18,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.exun.thaparexpress.Helper.SQLiteHandler;
 import com.exun.thaparexpress.Helper.SessionManager;
 import com.exun.thaparexpress.R;
+import com.exun.thaparexpress.activity.MainActivity;
 import com.exun.thaparexpress.adapter.AppConfig;
 import com.exun.thaparexpress.adapter.AppController;
 

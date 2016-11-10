@@ -7,6 +7,6 @@
     android:textSize="20sp"
     android:gravity="left"
     android:text="Branch"
-    android:textColor="#e4e4e4"
+    android:textColor="@color/textColorPrimary"
     android:padding="5dip"
     />

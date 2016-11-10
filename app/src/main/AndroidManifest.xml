@@ -42,18 +42,18 @@
 
 
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".activity.authenticate.LoginActivity"
             android:label="@string/title_activity_login"
             android:launchMode="singleTop"
             android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".activity.Register"
+            android:name=".activity.authenticate.Register"
             android:label="@string/title_activity_register"
             android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan"
             android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".activity.SignUp"
+            android:name=".activity.authenticate.SignUp"
             android:label="SignUp"
             android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan"

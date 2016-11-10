@@ -1,4 +1,4 @@
-package com.exun.thaparexpress.activity;
+package com.exun.thaparexpress.activity.authenticate;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.exun.thaparexpress.Helper.SessionManager;
 import com.exun.thaparexpress.R;
+import com.exun.thaparexpress.activity.MainActivity;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
