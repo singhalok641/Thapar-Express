@@ -39,6 +39,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login"
@@ -113,7 +115,30 @@
             android:label="Teachers"
             android:theme="@style/MyMaterialTheme"
             android:configChanges="orientation|screenSize">
+
         </activity>
+
+        <activity
+            android:name=".activity.ProfileActivity"
+            android:label="Teachers"
+            android:theme="@style/MyMaterialTheme"
+            android:configChanges="orientation|screenSize">
+
+        </activity>
+
+        <!-- Firebase Notifications -->
+        <service android:name=".service.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service android:name=".service.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- ./Firebase Notifications -->
     </application>
 
 </manifest>

@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/colorPrimary"
+    android:background="#fff"
     android:fitsSystemWindows="true">
 
     <LinearLayout
@@ -12,9 +12,9 @@
         >
 
         <ImageView
-            android:layout_width="179dp"
+            android:layout_width="wrap_content"
             android:layout_height="200dp"
-            android:src="@drawable/tx_logo"
+            android:src="@drawable/cb_logo"
             android:layout_gravity="center"
             android:paddingTop="40dp"
             android:focusable="true"
@@ -33,11 +33,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                android:theme="@style/TextLabel"
+                >
                 <EditText android:id="@+id/input_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#fff"
+                    android:textColor="@color/textColorPrimary"
                     android:inputType="textCapWords"
                     android:hint="Name" />
             </android.support.design.widget.TextInputLayout>
@@ -47,10 +49,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                android:theme="@style/TextLabel">
                 <EditText android:id="@+id/reg_roll"
                     android:layout_width="match_parent"
-                    android:textColor="#fff"
+                    android:textColor="@color/textColorPrimary"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:hint="Roll Number"/>
@@ -61,11 +64,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                android:theme="@style/TextLabel">
                 <EditText android:id="@+id/input_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#fff"
+                    android:textColor="@color/textColorPrimary"
                     android:inputType="textEmailAddress"
                     android:hint="Email" />
             </android.support.design.widget.TextInputLayout>
@@ -77,19 +81,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                android:theme="@style/TextLabel">
                 <EditText android:id="@+id/input_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#fff"
+                    android:textColor="@color/textColorPrimary"
                     android:inputType="textPassword"
                     android:hint="Password"/>
             </android.support.design.widget.TextInputLayout>
 
+            <!--University Label -->
+            <TextView android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColorPrimary"
+                android:text="University"
+                android:layout_marginTop="15dp"/>
+            <Spinner
+                android:id="@+id/University"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
             <!-- Gender Label -->
             <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#e4e4e4"
+                android:textColor="@color/textColorPrimary"
                 android:text="Gender"
                 android:layout_marginTop="15dp"/>
             <RadioGroup
@@ -98,21 +114,19 @@
                 android:layout_height="wrap_content">
                 <RadioButton
                     android:layout_width="wrap_content"
-                    android:textColor="#fff"
+                    android:textColor="@color/textColorPrimary"
                     android:layout_height="wrap_content"
                     android:shadowColor="#fff"
                     android:text="Male"
                     android:id="@+id/male"/>
                 <RadioButton
                     android:layout_width="wrap_content"
-                    android:textColor="#fff"
+                    android:textColor="@color/textColorPrimary"
                     android:layout_height="wrap_content"
                     android:shadowColor="#fff"
                     android:text="Female"
                     android:id="@+id/female"/>
             </RadioGroup>
-
-
 
             <!-- Hostel male Label -->
             <LinearLayout
@@ -123,7 +137,7 @@
                 android:visibility="gone">
                 <TextView android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#e4e4e4"
+                    android:textColor="@color/textColorPrimary"
                     android:text="Hostel"
                     android:layout_marginTop="15dp"/>
                 <RadioGroup
@@ -133,7 +147,7 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColorPrimary"
                         android:text="A"
                         android:id="@+id/a"/>
                     <RadioButton
@@ -145,50 +159,50 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColorPrimary"
                         android:text="C"
                         android:id="@+id/c"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColorPrimary"
                         android:text="D"
                         android:id="@+id/d"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColorPrimary"
                         android:text="H"
                         android:id="@+id/h"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColorPrimary"
                         android:text="J"
                         android:id="@+id/j"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColorPrimary"
                         android:text="K"
                         android:id="@+id/k"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColorPrimary"
                         android:text="L"
                         android:id="@+id/l"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColorPrimary"
                         android:text="FRC"
                         android:id="@+id/FRC"/>
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColorPrimary"
                         android:text="Other"
                         android:id="@+id/noneMale"/>
                 </RadioGroup>
@@ -200,11 +214,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:id="@+id/hostel_female"
-                android:textColor="#fff"
+                android:textColor="@color/textColorPrimary"
                 android:visibility="gone">
                 <TextView android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#e4e4e4"
+                    android:textColor="@color/textColorPrimary"
                     android:text="Hostel"
                     android:layout_marginTop="15dp"/>
                 <RadioGroup
@@ -214,30 +228,30 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColorPrimary"
                         android:text="E"
                         android:id="@+id/e"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColorPrimary"
                         android:text="G"
                         android:id="@+id/g"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColorPrimary"
                         android:text="I"
                         android:id="@+id/i"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColorPrimary"
                         android:text="PG"
                         android:id="@+id/pg"/>
                     <RadioButton
                         android:layout_width="wrap_content"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColorPrimary"
                         android:layout_height="wrap_content"
                         android:text="Other"
                         android:id="@+id/noneFemale"/>
@@ -245,10 +259,12 @@
                 </RadioGroup>
             </LinearLayout>
 
+
+
             <!--Year Label -->
             <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#e4e4e4"
+                android:textColor="@color/textColorPrimary"
                 android:text="Year of passing"
                 android:layout_marginTop="15dp"/>
             <Spinner
@@ -265,7 +281,7 @@
                 android:visibility="gone">
             <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#e4e4e4"
+                android:textColor="@color/textColorPrimary"
                 android:text="Branch"
                 android:layout_marginTop="15dp"/>
             <Spinner
@@ -276,7 +292,7 @@
 
                 <TextView android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#e4e4e4"
+                    android:textColor="@color/textColorPrimary"
                     android:text="Batch Code"
                     android:layout_marginTop="15dp"/>
                 <Spinner
@@ -295,7 +311,7 @@
                 android:visibility="gone">
                 <TextView android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#e4e4e4"
+                    android:textColor="@color/textColorPrimary"
                     android:text="Branch"
                     android:layout_marginTop="15dp"/>
                 <Spinner
@@ -305,7 +321,7 @@
                     />
                 <TextView android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#e4e4e4"
+                    android:textColor="@color/textColorPrimary"
                     android:text="Batch Code"
                     android:layout_marginTop="15dp"/>
                 <Spinner
@@ -324,7 +340,7 @@
                 android:visibility="gone">
                 <TextView android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#e4e4e4"
+                    android:textColor="@color/textColorPrimary"
                     android:text="Branch"
                     android:layout_marginTop="15dp"/>
                 <Spinner
@@ -335,7 +351,7 @@
 
                 <TextView android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#e4e4e4"
+                    android:textColor="@color/textColorPrimary"
                     android:text="Batch Code"
                     android:layout_marginTop="15dp"/>
                 <LinearLayout
@@ -365,11 +381,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                android:theme="@style/TextLabel">
                 <EditText android:id="@+id/reg_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#fff"
+                    android:textColor="@color/textColorPrimary"
                     android:inputType="number"
                     android:hint="Phone"/>
             </android.support.design.widget.TextInputLayout>
@@ -379,8 +396,8 @@
                 android:id="@+id/btn_signup"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="#fff"
-                android:textColor="@color/colorPrimaryDark"
+                android:background="@color/colorPrimary"
+                android:textColor="#fff"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:padding="12dp"
@@ -390,7 +407,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:textColor="#fff"
+                android:textColor="@color/textColorPrimary"
                 android:text="Already a member? Login"
                 android:gravity="center"
                 android:textSize="16dip"/>

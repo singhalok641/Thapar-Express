@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2B3D4F</color>
-    <color name="colorPrimaryDark">#1E2B38</color>
-    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="textColorPrimary">#212121</color>
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
-    <color name="colorAccent">#4C6A88</color>
+    <color name="colorAccent">#448AFF</color>
     <color name="tabsScrollColor">#FFF</color>
-    <color name="list_divider">#d9d9d9</color>
+    <color name="list_divider">#BDBDBD</color>
     <color name="list_row_start_color">#ffffff</color>
     <color name="list_row_end_color">#ffffff</color>
     <color name="list_row_hover_start_color">#ebeef0</color>
@@ -22,4 +22,5 @@
     <color name="warning">#f7c491</color>
     <color name="danger">#ce807e</color>
     <color name="lightPrimary">#3b4a59</color>
+    <color name="GrayLight">#d3d3d3</color>
 </resources>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorPrimary"
+    android:background="#fff"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true"
     android:fitsSystemWindows="true">
@@ -12,16 +12,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:background="@color/colorPrimary"
+    android:background="#fff"
     android:orientation="vertical"
     android:weightSum="1"
     android:paddingLeft="24dp"
     android:paddingRight="24dp">
 
         <ImageView
-            android:layout_width="180dp"
+            android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:src="@drawable/tx_logo"
+            android:src="@drawable/cb_logo"
             android:layout_gravity="center"
             android:paddingTop="40dp"
             android:focusable="true"
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="Sign in with your Google account"
-        android:textColor="#e4e4e4"
+        android:textColor="@color/textColorPrimary"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_marginBottom="15dp"
         android:layout_weight="0.08" />
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="24dp"
-            android:textColor="#fff"
+            android:textColor="@color/textColorPrimary"
             android:text="Already a member? Login"
             android:gravity="center"
             android:textSize="16dip"/>
@@ -57,4 +57,4 @@
        </LinearLayout>
 
 
-</LinearLayout>
+</ScrollView>
