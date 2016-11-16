@@ -20,6 +20,9 @@ public class AppConfig {
     // Home fragment updates url
     public static String URL_UPDATES = "http://thapar.brinjal.in/api/v1/event_updates";
 
+    //Mess Menu
+    public static String URL_MESS = "";
+
     // Home fragment updates url
     public static String URL_SOCIETY_LIST = "http://thapar.brinjal.in/api/v1/societies";
 

@@ -24,7 +24,7 @@ public class Teachers extends AppCompatActivity implements FragmentDrawer.Fragme
     ViewPager pager;
     ViewPagerAdapterTeachers adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[] = {"Computer Science Department", "Electronics Department", "Mechanical Department","Electrical and Instrumentaion Department","Civil Department","Chemical Department","Biotechnology Department"};
+    CharSequence Titles[] = {"CS Department", "ECE Department", "Mechanical Department","Electrical and Instrumentaion Department","Civil Department","Chemical Department","Biotechnology Department"};
     int Numboftabs = 7;
 
     int pos;
@@ -47,8 +47,6 @@ public class Teachers extends AppCompatActivity implements FragmentDrawer.Fragme
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
         drawerFragment.setDrawerListener(this);
-
-
 
         // Creating The ViewPagerAdapterTimetable and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
         adapter = new ViewPagerAdapterTeachers(getSupportFragmentManager(), Titles, Numboftabs);
@@ -106,7 +104,6 @@ public class Teachers extends AppCompatActivity implements FragmentDrawer.Fragme
                 startActivity(i);
                 finish();
                 break;
-
             case 4:
                 i.putExtra("selectionId", 4);
                 startActivity(i);
