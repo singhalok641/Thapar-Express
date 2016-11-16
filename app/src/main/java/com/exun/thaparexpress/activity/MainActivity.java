@@ -107,10 +107,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 }
 
             case 4:
-                Toast.makeText(MainActivity.this, "Coming Soon :D", Toast.LENGTH_SHORT).show();
-                //i = new Intent(MainActivity.this,MessMenu.class);
-                //startActivity(i);
-                //finish();
+                //Toast.makeText(MainActivity.this, "Coming Soon :D", Toast.LENGTH_SHORT).show();
+                i = new Intent(MainActivity.this,MessMenu.class);
+                startActivity(i);
+                finish();
                 break;
 
             case 5:
@@ -119,10 +119,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 break;
 
             case 6:
-                Toast.makeText(MainActivity.this, "Coming Soon :D", Toast.LENGTH_SHORT).show();
-                //i = new Intent(MainActivity.this,Teachers.class);
-                //startActivity(i);
-                //finish();
+                //Toast.makeText(MainActivity.this, "Coming Soon :D", Toast.LENGTH_SHORT).show();
+                i = new Intent(MainActivity.this,Teachers.class);
+                startActivity(i);
+                finish();
                 break;
 
             case 7:
