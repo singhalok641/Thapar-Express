@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         displayView(position);
     }
 
-    private void displayView(int position) {
+    public void displayView(int position) {
         Fragment fragment = null;
         Intent i;
         String title = getString(R.string.app_name);

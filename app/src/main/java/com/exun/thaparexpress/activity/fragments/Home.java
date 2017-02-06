@@ -1,14 +1,17 @@
 package com.exun.thaparexpress.activity.fragments;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -17,6 +20,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.exun.thaparexpress.activity.MainActivity;
+import com.exun.thaparexpress.activity.ProfileActivity;
 import com.exun.thaparexpress.adapter.AppConfig;
 import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.adapter.AppController;
@@ -50,6 +55,9 @@ public class Home extends Fragment{
     Resources res;
     int[] colors;
 
+    //BottomBar
+    private RelativeLayout btnHome, btnProfile, btnEvents, btnBlogs,btnNotifications;
+
     public Home() {
         // Required empty public constructor
     }
@@ -58,6 +66,12 @@ public class Home extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+
+        btnHome = (RelativeLayout) rootView.findViewById(R.id.button_home);
+        btnProfile = (RelativeLayout) rootView.findViewById(R.id.button_profile);
+        btnEvents = (RelativeLayout) rootView.findViewById(R.id.button_events);
+        btnBlogs = (RelativeLayout) rootView.findViewById(R.id.button_blogs);
+        btnNotifications = (RelativeLayout) rootView.findViewById(R.id.button_notifications);
 
         listView = (ListView) rootView.findViewById(R.id.listUpdates);
         adapter = new CustomUpdateListAdapter(getActivity(), updatesLists);
@@ -164,11 +178,51 @@ public class Home extends Fragment{
 
         });
 
+        setClickListeners();
+
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(updatesReq);
 
         // Inflate the layout for this fragment
         return rootView;
+    }
+
+    private void setClickListeners() {
+        btnHome.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v)
+            {
+                ((MainActivity) getActivity()).displayView(0);
+            }
+        });
+
+        btnProfile.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v)
+            {
+                Intent i = new Intent(getActivity(), ProfileActivity.class);
+                startActivity(i);
+            }
+        });
+
+        btnEvents.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v)
+            {
+                ((MainActivity) getActivity()).displayView(2);
+            }
+        });
+
+        btnBlogs.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v)
+            {
+                ((MainActivity) getActivity()).displayView(5);
+            }
+        });
+
+        btnNotifications.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v)
+            {
+                ((MainActivity) getActivity()).displayView(0);
+            }
+        });
     }
 
     @Override
