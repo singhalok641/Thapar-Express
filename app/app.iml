@@ -102,6 +102,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/25.0.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.0.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/transition/25.0.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.volley/volley/1.0.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.19.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.github.ybq/Android-SpinKit/1.0.4/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-base/9.8.0/jars" />
@@ -168,33 +169,11 @@
     <orderEntry type="library" exported="" name="play-services-tasks-9.8.0" level="project" />
     <orderEntry type="library" exported="" name="circleimageview-1.3.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-auth-9.8.0" level="project" />
+    <orderEntry type="library" exported="" name="volley-1.0.0" level="project" />
     <orderEntry type="library" exported="" name="firebase-analytics-9.8.0" level="project" />
     <orderEntry type="library" exported="" name="bolts-applinks-1.4.0" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-25.0.0" level="project" />
     <orderEntry type="library" exported="" name="support-vector-drawable-25.0.0" level="project" />
     <orderEntry type="library" exported="" name="recyclerview-v7-25.0.0" level="project" />
-    <orderEntry type="module" module-name="volley" exported="" />
-    <orderEntry type="library" exported="" scope="TEST" name="objenesis-1.0" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="maven-ant-tasks-2.1.3" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="ant-1.8.0" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="icu4j-53.1" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="accessibility-test-framework-1.0" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="robolectric-resources-3.0" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="robolectric-annotations-3.0" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="asm-commons-5.0.1" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="ant-launcher-1.8.0" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="sqlite4java-0.282" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="asm-tree-5.0.1" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="asm-5.0.1" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="shadows-core-3.0" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="robolectric-utils-3.0" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="asm-analysis-5.0.1" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="vtd-xml-2.11" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="hamcrest-core-1.1" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="asm-util-5.0.1" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="bcprov-jdk16-1.46" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="junit-4.10" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="mockito-core-1.9.5" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="robolectric-3.0" level="project" />
   </component>
 </module>
