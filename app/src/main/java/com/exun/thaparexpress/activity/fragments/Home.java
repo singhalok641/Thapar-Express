@@ -1,32 +1,23 @@
 package com.exun.thaparexpress.activity.fragments;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.exun.thaparexpress.activity.MainActivity;
-import com.exun.thaparexpress.activity.ProfileActivity;
 import com.exun.thaparexpress.adapter.AppConfig;
 import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.adapter.AppController;
 import com.exun.thaparexpress.adapter.CustomUpdateListAdapter;
-import com.exun.thaparexpress.model.BlogsList;
 import com.exun.thaparexpress.model.UpdatesList;
 
 import org.json.JSONArray;
@@ -47,16 +38,13 @@ public class Home extends Fragment{
 
     // Updates json url
     private static final String url = AppConfig.URL_UPDATES;
-    private ProgressDialog pDialog;
+    //private ProgressDialog pDialog;
     private List<UpdatesList> updatesLists = new ArrayList<UpdatesList>();
     private ListView listView;
     Random random = new Random();
     private CustomUpdateListAdapter adapter;
     Resources res;
     int[] colors;
-
-    //BottomBar
-    private RelativeLayout btnHome, btnProfile, btnEvents, btnBlogs,btnNotifications;
 
     public Home() {
         // Required empty public constructor
@@ -67,12 +55,6 @@ public class Home extends Fragment{
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        btnHome = (RelativeLayout) rootView.findViewById(R.id.button_home);
-        btnProfile = (RelativeLayout) rootView.findViewById(R.id.button_profile);
-        btnEvents = (RelativeLayout) rootView.findViewById(R.id.button_events);
-        btnBlogs = (RelativeLayout) rootView.findViewById(R.id.button_blogs);
-        btnNotifications = (RelativeLayout) rootView.findViewById(R.id.button_notifications);
-
         listView = (ListView) rootView.findViewById(R.id.listUpdates);
         adapter = new CustomUpdateListAdapter(getActivity(), updatesLists);
         listView.setAdapter(adapter);
@@ -80,10 +62,10 @@ public class Home extends Fragment{
         res = getResources();
         colors = res.getIntArray(R.array.colors);
 
-        pDialog = new ProgressDialog(getActivity());
+        //pDialog = new ProgressDialog(getActivity());
         // Showing progress dialog before making http request
-        pDialog.setMessage("Loading...");
-        pDialog.show();
+        //pDialog.setMessage("Loading...");
+        //pDialog.show();
 
         // Creating volley request obj
         StringRequest updatesReq = new StringRequest(Request.Method.GET,url,
@@ -92,7 +74,7 @@ public class Home extends Fragment{
                     @Override
                     public void onResponse(String response) {
                         Log.d(TAG, "Updates: " + response);
-                        hidePDialog();
+                        //hidePDialog();
 
                         try {
                             JSONObject jObj = new JSONObject(response);
@@ -173,12 +155,11 @@ public class Home extends Fragment{
                 adapter.notifyDataSetChanged();
                 Toast.makeText(getActivity(),
                         "Connection failed! :(", Toast.LENGTH_LONG).show();
-                hidePDialog();
+                //hidePDialog();
             }
 
         });
 
-        setClickListeners();
 
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(updatesReq);
@@ -187,56 +168,20 @@ public class Home extends Fragment{
         return rootView;
     }
 
-    private void setClickListeners() {
-        btnHome.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v)
-            {
-                ((MainActivity) getActivity()).displayView(0);
-            }
-        });
-
-        btnProfile.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v)
-            {
-                Intent i = new Intent(getActivity(), ProfileActivity.class);
-                startActivity(i);
-            }
-        });
-
-        btnEvents.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v)
-            {
-                ((MainActivity) getActivity()).displayView(2);
-            }
-        });
-
-        btnBlogs.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v)
-            {
-                ((MainActivity) getActivity()).displayView(5);
-            }
-        });
-
-        btnNotifications.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v)
-            {
-                ((MainActivity) getActivity()).displayView(0);
-            }
-        });
-    }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        hidePDialog();
+        //hidePDialog();
     }
-
+/*
     private void hidePDialog() {
         if (pDialog != null) {
             pDialog.dismiss();
             pDialog = null;
         }
     }
+    */
 
     private int getColor(String name){
 

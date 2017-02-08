@@ -149,11 +149,6 @@ public class MessMenu extends AppCompatActivity implements FragmentDrawer.Fragme
                 startActivity(i);
                 finish();
                 break;
-            case 2:
-                i = new Intent(MessMenu.this,Events.class);
-                startActivity(i);
-                finish();
-                break;
             case 3:
                 i.putExtra("selectionId", 3);
                 startActivity(i);

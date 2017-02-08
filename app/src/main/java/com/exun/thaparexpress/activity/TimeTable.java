@@ -155,11 +155,6 @@ public class TimeTable extends AppCompatActivity implements FragmentDrawer.Fragm
                 startActivity(i);
                 finish();
                 break;
-            case 2:
-                i = new Intent(TimeTable.this,Events.class);
-                startActivity(i);
-                finish();
-                break;
             case 3:
 
                 break;
