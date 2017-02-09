@@ -76,11 +76,6 @@
             android:launchMode="singleTop"
             android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".activity.Events"
-            android:label="Events"
-            android:launchMode="singleTop"
-            android:configChanges="orientation|screenSize"/>
-        <activity
             android:name=".activity.TimeTable"
             android:label="TimeTable"
             android:theme="@style/MyMaterialTheme"
@@ -100,15 +95,6 @@
                 android:value=".activity.Societies" />
         </activity>
         <activity
-            android:name=".activity.EventDetails"
-            android:label="@string/title_activity_event_details"
-            android:theme="@style/MyMaterialTheme"
-            android:configChanges="orientation|screenSize">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.Events" />
-        </activity>
-        <activity
             android:name=".activity.FullBlog"
             android:label="ThaparLogs"
             android:theme="@style/MyMaterialTheme"
@@ -123,14 +109,6 @@
 
         <activity
             android:name=".activity.Teachers"
-            android:label="Teachers"
-            android:theme="@style/MyMaterialTheme"
-            android:configChanges="orientation|screenSize">
-
-        </activity>
-
-        <activity
-            android:name=".activity.ProfileActivity"
             android:label="Teachers"
             android:theme="@style/MyMaterialTheme"
             android:configChanges="orientation|screenSize">

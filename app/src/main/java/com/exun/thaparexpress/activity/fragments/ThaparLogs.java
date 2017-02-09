@@ -1,6 +1,5 @@
 package com.exun.thaparexpress.activity.fragments;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -40,7 +39,7 @@ public class ThaparLogs extends Fragment{
 
     // blogs json url
     private String url= AppConfig.URL_BLOGS_LIST;
-    private ProgressDialog pDialog;
+    //private ProgressDialog pDialog;
     private List<BlogsList> blogList = new ArrayList<BlogsList>();
 
     //New
@@ -53,10 +52,10 @@ public class ThaparLogs extends Fragment{
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_tlogs, container, false);
 
-        pDialog = new ProgressDialog(getActivity());
+        //pDialog = new ProgressDialog(getActivity());
         // Showing progress dialog before making http request
-        pDialog.setMessage("Loading...");
-        pDialog.show();
+        //pDialog.setMessage("Loading...");
+        //pDialog.show();
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.blog_rv);
         mRecyclerView.setHasFixedSize(true);
@@ -72,7 +71,7 @@ public class ThaparLogs extends Fragment{
                     @Override
                     public void onResponse(String response) {
                         Log.d(TAG, "Blogs: " + response);
-                        hidePDialog();
+                        //hidePDialog();
 
                         try {
                             JSONObject jObj = new JSONObject(response);
@@ -130,7 +129,7 @@ public class ThaparLogs extends Fragment{
                 Log.e(TAG, "Error: " + error.getMessage());
                 Toast.makeText(getActivity(),
                         "Connection failed! :(", Toast.LENGTH_LONG).show();
-                hidePDialog();
+                //hidePDialog();
             }
 
         });
@@ -173,16 +172,18 @@ public class ThaparLogs extends Fragment{
         });
     }
 
+
     @Override
     public void onDestroy() {
         super.onDestroy();
-        hidePDialog();
+       // hidePDialog();
     }
-
+ /*
     private void hidePDialog() {
         if (pDialog != null) {
             pDialog.dismiss();
             pDialog = null;
         }
     }
+    */
 }

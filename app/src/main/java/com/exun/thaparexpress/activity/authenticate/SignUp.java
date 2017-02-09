@@ -212,12 +212,12 @@ public class SignUp extends AppCompatActivity implements
             updateUI(sName,sEmail,url);
 
         }
-            else {
-                // Signed out, show unauthenticated UI.
-                Toast.makeText(getBaseContext(), "Connection failed", Toast.LENGTH_SHORT).show();
-            }
-
+        else {
+            // Signed out, show unauthenticated UI.
+            Toast.makeText(getBaseContext(), "Connection failed", Toast.LENGTH_SHORT).show();
         }
+
+    }
 
     private void updateUI(String sName, String sEmail, String url) {
 
@@ -282,5 +282,4 @@ public class SignUp extends AppCompatActivity implements
 
 
 }
-
 
