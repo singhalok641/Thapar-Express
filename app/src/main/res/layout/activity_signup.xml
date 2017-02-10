@@ -20,7 +20,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="114dp"
             android:src="@drawable/cb_logo"
             android:layout_gravity="center"
             android:paddingTop="40dp"
@@ -28,7 +28,42 @@
             android:focusableInTouchMode="true"
             />
 
-    <TextView
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Sign up to enter the community"
+            android:textColor="@color/textColorPrimary"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="0.08" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+        <Spinner
+            android:id="@+id/University"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+        <!-- Roll number Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:theme="@style/TextLabel">
+            <EditText android:id="@+id/reg_roll"
+                android:layout_width="match_parent"
+                android:textColor="@color/textColorPrimary"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Roll Number"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -37,10 +72,26 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_marginBottom="15dp"
         android:layout_weight="0.08" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="56dp"
+            android:paddingRight="24dp">
+        <Button
+            android:text="Linked In"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Facebook_button"
+            android:background="@color/cardview_dark_background"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_vertical"
+            />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical" />
 
@@ -61,7 +112,7 @@
             android:text="Already a member? Login"
             android:gravity="center"
             android:textSize="16dip"/>
-
+</LinearLayout>
        </LinearLayout>
 
 
