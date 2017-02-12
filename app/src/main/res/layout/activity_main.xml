@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,15 +21,24 @@
                 layout="@layout/toolbar" />
         </LinearLayout>
 
+        <!--  Bottom Nav Bar -->
         <FrameLayout
             android:id="@+id/container_body"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:itemBackground="@color/colorPrimary"
+            app:itemIconTint="@color/white"
+            app:itemTextColor="@color/white"
+            app:menu="@menu/bottom_navigation_main" />
 
     </LinearLayout>
-
 
     <fragment
         android:id="@+id/fragment_navigation_drawer"

@@ -93,7 +93,7 @@ public class FragmentDrawer extends Fragment {
         roll = (TextView) layout.findViewById(R.id.roll);
         _profile=(CircleImageView)layout.findViewById(R.id.profile_image);
         see_profile=(TextView)layout.findViewById(R.id.see_profile);
-
+/*
         see_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,7 +110,7 @@ public class FragmentDrawer extends Fragment {
                 startActivity(i);
             }
         });
-
+*/
         db = new SQLiteHandler(getActivity().getApplicationContext());
         sname = db.getUserDetails().get("name");
         sroll = db.getUserDetails().get("roll");

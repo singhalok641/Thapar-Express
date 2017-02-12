@@ -5,13 +5,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.exun.thaparexpress.Helper.SessionManager;
 import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.activity.MainActivity;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -20,10 +28,12 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.Arrays;
 
 /**
  * Created by root on 9/17/16.
  */
+
 public class SignUp extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
@@ -39,11 +49,71 @@ public class SignUp extends AppCompatActivity implements
 
 
     private GoogleApiClient mGoogleApiClient;
+    CallbackManager callbackManager;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate( Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        callbackManager = CallbackManager.Factory.create();
+
+        findViewById(R.id.sign_in_button).setOnClickListener(this);
+
+        Log.d("TAG", "String");
+        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton.setReadPermissions("email");
+        // Other app specific specialization
+
+        // Callback registration
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                // App code
+                Log.d("TAGddd", String.valueOf(loginResult));
+
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+                Log.d("TdfAG", "cancel");
+
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+                Log.d("TAGkkk", "cancddel");
+
+            }
+        });
+
+
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        // App code
+                        Log.d("TA22G", String.valueOf(loginResult));
+
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        // App code
+                        Log.d("TAGkksk", "cancddel");
+
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        // App code
+                        Log.d("TAGkkdsk", "cancsdsdel");
+
+                    }
+                });
+
+
 
         // Progress dialog
         progressDialog = new ProgressDialog(this);
@@ -64,7 +134,6 @@ public class SignUp extends AppCompatActivity implements
         }
 
 
-        findViewById(R.id.sign_in_button).setOnClickListener(this);
 
         // [START configure_signin]
         // Configure sign-in to request the user's ID, email address, and basic
@@ -143,12 +212,12 @@ public class SignUp extends AppCompatActivity implements
             updateUI(sName,sEmail,url);
 
         }
-            else {
-                // Signed out, show unauthenticated UI.
-                Toast.makeText(getBaseContext(), "Connection failed", Toast.LENGTH_SHORT).show();
-            }
-
+        else {
+            // Signed out, show unauthenticated UI.
+            Toast.makeText(getBaseContext(), "Connection failed", Toast.LENGTH_SHORT).show();
         }
+
+    }
 
     private void updateUI(String sName, String sEmail, String url) {
 
@@ -213,5 +282,4 @@ public class SignUp extends AppCompatActivity implements
 
 
 }
-
 

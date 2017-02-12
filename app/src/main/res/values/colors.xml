@@ -23,4 +23,13 @@
     <color name="danger">#ce807e</color>
     <color name="lightPrimary">#BBDEFB</color>
     <color name="GrayLight">#d3d3d3</color>
+
+    <color name="flat_blue">#4385f5</color>
+    <color name="flat_red">#db4336</color>
+    <color name="flat_yellow">#f3b60d</color>
+    <color name="flat_green">#109d59</color>
+    <color name="white">#FFFFFF</color>
+
+
+
 </resources>

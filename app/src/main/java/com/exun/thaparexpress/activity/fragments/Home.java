@@ -1,6 +1,5 @@
 package com.exun.thaparexpress.activity.fragments;
 
-import android.app.ProgressDialog;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,14 +13,11 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.exun.thaparexpress.adapter.AppConfig;
 import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.adapter.AppController;
 import com.exun.thaparexpress.adapter.CustomUpdateListAdapter;
-import com.exun.thaparexpress.model.BlogsList;
 import com.exun.thaparexpress.model.UpdatesList;
 
 import org.json.JSONArray;
@@ -42,7 +38,7 @@ public class Home extends Fragment{
 
     // Updates json url
     private static final String url = AppConfig.URL_UPDATES;
-    private ProgressDialog pDialog;
+    //private ProgressDialog pDialog;
     private List<UpdatesList> updatesLists = new ArrayList<UpdatesList>();
     private ListView listView;
     Random random = new Random();
@@ -66,10 +62,10 @@ public class Home extends Fragment{
         res = getResources();
         colors = res.getIntArray(R.array.colors);
 
-        pDialog = new ProgressDialog(getActivity());
+        //pDialog = new ProgressDialog(getActivity());
         // Showing progress dialog before making http request
-        pDialog.setMessage("Loading...");
-        pDialog.show();
+        //pDialog.setMessage("Loading...");
+        //pDialog.show();
 
         // Creating volley request obj
         StringRequest updatesReq = new StringRequest(Request.Method.GET,url,
@@ -78,7 +74,7 @@ public class Home extends Fragment{
                     @Override
                     public void onResponse(String response) {
                         Log.d(TAG, "Updates: " + response);
-                        hidePDialog();
+                        //hidePDialog();
 
                         try {
                             JSONObject jObj = new JSONObject(response);
@@ -159,10 +155,11 @@ public class Home extends Fragment{
                 adapter.notifyDataSetChanged();
                 Toast.makeText(getActivity(),
                         "Connection failed! :(", Toast.LENGTH_LONG).show();
-                hidePDialog();
+                //hidePDialog();
             }
 
         });
+
 
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(updatesReq);
@@ -171,18 +168,20 @@ public class Home extends Fragment{
         return rootView;
     }
 
+
     @Override
     public void onDestroy() {
         super.onDestroy();
-        hidePDialog();
+        //hidePDialog();
     }
-
+/*
     private void hidePDialog() {
         if (pDialog != null) {
             pDialog.dismiss();
             pDialog = null;
         }
     }
+    */
 
     private int getColor(String name){
 

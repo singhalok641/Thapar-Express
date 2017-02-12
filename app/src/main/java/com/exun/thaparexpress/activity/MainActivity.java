@@ -3,20 +3,25 @@ package com.exun.thaparexpress.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.exun.thaparexpress.Helper.BottomNavigationViewHelper;
 import com.exun.thaparexpress.Helper.SQLiteHandler;
 import com.exun.thaparexpress.R;
 import com.exun.thaparexpress.activity.fragments.About;
+import com.exun.thaparexpress.activity.fragments.Events;
 import com.exun.thaparexpress.activity.fragments.Feedback;
 import com.exun.thaparexpress.activity.fragments.Home;
+import com.exun.thaparexpress.activity.fragments.Profile;
 import com.exun.thaparexpress.activity.fragments.ThaparLogs;
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
@@ -52,6 +57,57 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
         drawerFragment.setDrawerListener(this);
 
+        //Bottom Nav Bar
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem item) {
+                        Fragment fragment = null;
+                        String title = getString(R.string.app_name);
+                        switch (item.getItemId()) {
+                            case R.id.action_home:
+                                fragment = new Home();
+                                title = "Home";
+                                break;
+
+                            case R.id.action_profile:
+                                fragment = new Profile();
+                                title = "Profile";
+                                break;
+
+                            case R.id.action_blogs:
+                                fragment = new ThaparLogs();
+                                title = "Blogs";
+                                break;
+
+                            case R.id.action_events:
+                                fragment = new Events();
+                                title = "Events";
+                                break;
+
+                            case R.id.action_notifications:
+                                break;
+
+                        }
+                        if (fragment != null) {
+                            FragmentManager fragmentManager = getSupportFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.container_body, fragment);
+                            fragmentTransaction.commit();
+
+                            // set the toolbar title
+                            getSupportActionBar().setTitle(title);
+
+
+                        }
+                        return true;
+                    }
+                });
+
+
         Intent i = getIntent();
 
         if (i!=null){
@@ -69,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         displayView(position);
     }
 
-    private void displayView(int position) {
+    public void displayView(int position) {
         Fragment fragment = null;
         Intent i;
         String title = getString(R.string.app_name);
