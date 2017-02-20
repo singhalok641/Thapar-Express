@@ -228,14 +228,7 @@ public class SignUp extends AppCompatActivity implements
         Log.d(TAG, "Starting register activity");
         //session.setLogin(true);
 
-        // Launch register activity
-        Intent intent = new Intent(SignUp.this,
-                Register.class);
-        intent.putExtra("user_name", sName);
-        intent.putExtra("user_id", sEmail);
-        intent.putExtra("user_photo", url);
-        startActivity(intent);
-        finish();
+
     }
 
     // [END handleSignInResult]

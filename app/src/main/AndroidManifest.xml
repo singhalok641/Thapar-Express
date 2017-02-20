@@ -40,17 +40,16 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".activity.Authenticate"
+            android:label="@string/title_activity_login"
+            android:launchMode="singleTop"
+            android:configChanges="orientation|screenSize"/>
 
         <activity
             android:name=".activity.authenticate.LoginActivity"
             android:label="@string/title_activity_login"
             android:launchMode="singleTop"
-            android:configChanges="orientation|screenSize"/>
-        <activity
-            android:name=".activity.authenticate.Register"
-            android:label="@string/title_activity_register"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan"
             android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".activity.authenticate.SignUp"
@@ -105,17 +104,7 @@
         </activity>
 
         <!-- Firebase Notifications -->
-        <service android:name=".service.MyFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
 
-        <service android:name=".service.MyFirebaseInstanceIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
         <!-- ./Firebase Notifications -->
     </application>
 

@@ -7,6 +7,10 @@
     <string name="drawer_open">Open</string>
     <string name="facebook_app_id">754290661377097</string>
 
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+
     <integer-array name="colors">
         <item>@color/color1</item>
         <item>@color/color2</item>
@@ -102,8 +106,6 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
-
-
     </string-array>
 
        <string-array name="spinner_cond">
@@ -112,13 +114,13 @@
            <item>Little old</item>
        </string-array>z
 
-       <string name="title_activity_login">Login</string>
-       <string name="title_activity_register">Register</string>
-       <string name="title_activity_societies">Societies</string>
-       <string name="title_activity_fragment_holder">Fragment_holder</string>
-       <string name="gmann">Gurdas Maan is an Indian singer, songwriter, choreographer, and actor. He is considered one of the most notable figures in the world of Punjabi music. He was born in Giddarbaha village of the Indian state of Punjab and gained national attention in 1980 with the song "Dil Da Mamla Hai." Since then, he has gone on to record over 34 albums and has written over 305 songs. In 2013 he announced the launch of his YouTube channel to stay connected with his fans via video blogs and old as well as new music videos.</string>
-       <string name="title_activity_event_details">EventDetails</string>
-        <string name="action_edit">Edit description</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_register">Register</string>
+    <string name="title_activity_societies">Societies</string>
+    <string name="title_activity_fragment_holder">Fragment_holder</string>
+    <string name="gmann">Gurdas Maan is an Indian singer, songwriter, choreographer, and actor. He is considered one of the most notable figures in the world of Punjabi music. He was born in Giddarbaha village of the Indian state of Punjab and gained national attention in 1980 with the song "Dil Da Mamla Hai." Since then, he has gone on to record over 34 albums and has written over 305 songs. In 2013 he announced the launch of his YouTube channel to stay connected with his fans via video blogs and old as well as new music videos.</string>
+    <string name="title_activity_event_details">EventDetails</string>
+    <string name="action_edit">Edit description</string>
 
    </resources>
 

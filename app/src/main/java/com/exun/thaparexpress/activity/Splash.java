@@ -45,7 +45,7 @@ public class Splash extends AppCompatActivity {
         session = new SessionManager(getApplicationContext());
 
         if (isOnline()){
-            Intent intent = new Intent(this, SignUp.class);
+            Intent intent = new Intent(this, Authenticate.class);
             startActivity(intent);
             finish();
         }
